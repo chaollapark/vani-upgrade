@@ -1,0 +1,179 @@
+.vanisearch {
+    padding-bottom: 35px;
+    overflow: hidden;
+}
+
+.vanisearch .vs-container {
+    max-width: 1030px;
+}
+
+.vanisearch .vs-strip-top {
+    padding: 5px 0 15px;
+}
+
+.vanisearch .vs-sidebar {
+    width: 300px;
+    float: left;
+    overflow: hidden;
+    padding-bottom: 1px;
+    position: relative;
+}
+
+.vanisearch .vs-sidebar #accordion {
+    top: 0;
+    z-index: 20000;
+    width: inherit;
+}
+
+.vanisearch .ui-accordion-header {
+    padding-left: 7px;
+}
+
+.vanisearch .ui-accordion-header:focus {
+    outline: none;
+}
+
+.vanisearch .ui-accordion-header:first-of-type {
+    margin-top: 0;
+    text-align: center;
+}
+
+.vanisearch .ui-accordion-header .ui-accordion-header-icon {
+    width: 0;
+}
+
+.vanisearch .vs-select-search-wrapper {
+    position: relative;
+}
+
+.vanisearch .vs-icon-small {
+    position: absolute;
+    width: 18px;
+    top: 3px;
+    right: 7px;
+}
+
+.vanisearch .vs-select-search {
+    padding: 3px 26px 3px 7px;
+}
+
+.vanisearch .ui-accordion-content {
+    padding: 0;
+}
+
+.vanisearch .vs-option-title {
+    cursor: pointer;
+    padding: 3px 5px 3px 7px;
+    box-sizing: border-box;
+}
+
+.vanisearch .vs-option-title:hover {
+    background-color: #eee;
+}
+
+.vanisearch .vs-option.active .vs-option-title {
+    background-color: #5555ff;
+    color: white;
+}
+
+.vanisearch .vs-option-value {
+    display: none;
+}
+
+.vanisearch .vs-select-search {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.vanisearch .vs-main-col {
+    margin-left: 330px;
+    max-width: 700px;
+}
+
+.vanisearch .vs-search-wrapper {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.vanisearch .vs-search-wrapper #vs-icon {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+
+.vanisearch .vs-search-wrapper #vs-search {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    height: 30px;
+    padding-left: 8px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.vanisearch .vs-result b {
+    color: #000088;
+}
+
+.vanisearch .vs-loading {
+    background-image: url(https://vanimedia.org/w/images/8/83/Search_indicator.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 16px;
+}
+
+.vanisearch #vs-help-trigger {
+    cursor: pointer;
+    color: #002bb8;
+}
+
+.vanisearch #vs-help-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 25000;
+    text-align: center;
+}
+
+.vanisearch #vs-help-wrapper:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.vanisearch #vs-help {
+    max-width: 700px;
+    background-color: white;
+    position: relative;
+    padding: 0 12px 37px;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.vanisearch #vs-help h2 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-right: 32px;
+}
+
+.vanisearch #vs-help-close {
+    background-color: #555;
+    color: white;
+    padding: 2px 5px;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.vanisearch #vs-help-close:hover {
+    background-color: #c00;
+}

@@ -1,0 +1,36 @@
+{
+  "name": "TestYada",
+  "version": "0.0.1",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:TestYada",
+  "descriptionmsg": "testyada-desc",
+
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteExtPath": ""
+  },
+
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\TestYada\\SpecialTestYada": "SpecialTestYada.php"
+  },
+
+  "SpecialPages": {
+    "TestYada": "MediaWiki\\Extension\\TestYada\\SpecialTestYada"
+  },
+
+  "MessagesDirs": {
+    "TestYada": ["i18n"]
+  },
+
+  "ResourceModules": {
+    "ext.testyada.special": {
+      "scripts": ["modules/main.js"],
+      "styles": ["modules/main.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "TestYadaAlias": "i18n/en.alias.php"
+  }
+}

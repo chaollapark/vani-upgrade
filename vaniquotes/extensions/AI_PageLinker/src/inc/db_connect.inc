@@ -1,0 +1,13 @@
+<?php
+$config = require '/var/www/vaniquotes/vaniquotes.env.php';
+$host = "localhost";
+$user = $config['DB_USER'];
+$password = $config['DB_PASS'];
+$database = "vp_search";
+$mysqli = new mysqli($host,$user,$password,$database);
+if ($mysqli->connect_error) {
+    die('Connect Error (' . $mysqli->connect_errno . ') '
+        . $mysqli->connect_error);
+}
+// $mysqli->query("set names utf8");
+?>

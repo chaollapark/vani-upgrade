@@ -1,0 +1,21 @@
+{
+	"name": "VanipediaApi",
+	"version": "1.0.0",
+	"author": "Elad Stern",
+	"description": "API extension for Vanipedia: Quote by date and Random video",
+	"type": "api",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadClasses": {
+		"ApiQueryQuoteByDate": "ApiQueryQuoteByDate.php",
+		"ApiQueryRandomVideo": "ApiQueryRandomVideo.php",
+		"VanipediaApiSetup": "VanipediaApiSetup.php"
+	},
+	"APIListModules": {
+		"quotebydate": "ApiQueryQuoteByDate",
+		"randomvideo": "ApiQueryRandomVideo"
+	},
+	"callback": "VanipediaApiSetup::onRegistration",
+	"manifest_version": 2
+}

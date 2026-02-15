@@ -1,0 +1,23 @@
+{
+	"name": "VaniSubcat",
+	"version": "1.1",
+	"author": ["Elad Stern"],
+	"description": "Creates a link to scroll directly to the pages in category page view",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadClasses": {
+		"VaniCategoryPage": "VaniSubcat.body.php",
+		"VaniCategoryViewer": "VaniSubcat.body.php"
+	},
+	"Hooks": {
+		"CategoryPageView": "VaniSubcatHooks::onCategoryPageView"
+	},
+	"AutoloadClasses": {
+		"VaniSubcatHooks": "VaniSubcatHooks.php",
+		"VaniCategoryPage": "VaniSubcat.body.php",
+		"VaniCategoryViewer": "VaniSubcat.body.php"
+	},
+	"manifest_version": 2
+}

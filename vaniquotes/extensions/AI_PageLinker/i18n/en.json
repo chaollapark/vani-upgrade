@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"ai_pagelinker": "AI Page Linker",
+	"myextension": "AI Page Linker",
+	"ai_pagelinker-desc": "AI Page Linker",
+	"myextension-summary": "AI Page Linker",
+	"action-myextension": "AI Page Linker",
+    "right-myextension": "AI Page Linker",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

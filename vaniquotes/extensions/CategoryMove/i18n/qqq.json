@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elad Stern"
+		]
+	},
+	"categorymove": "The name of the extension's entry in Special:SpecialPages",
+	"categorymove-desc": "{{desc}}",
+	"categorymove-summary": "Description appearing on top of Special:CategoryMove.",
+	"action-categorymove": "{{doc-action|categorymove}}",
+	"right-categorymove": "{{doc-right|categorymove}}",
+	"-catnamessection": "Category Names section label",
+    "form-sourcecat": "Label near Source Category field",
+	"form-destcat": "Label near Destination Category field",
+    "form-keepsource": "Label near 'keep source too' checkbox"	
+}

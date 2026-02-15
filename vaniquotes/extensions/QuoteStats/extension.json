@@ -1,0 +1,42 @@
+{
+	"name": "Statistics for Quotes from Vaniquote Pages",
+	"version": "0.0.1",
+	"author": [
+		"Elad Stern"
+	],
+	"url": "https://www.vanipedia.org/wiki/Extension:QuoteStats",
+	"descriptionmsg": "quotestats-desc",
+	"type": "specialpage",
+	"AutoloadClasses": {
+		"SpecialQuoteStats": "src/SpecialQuoteStats.php"
+	},
+	"ResourceModules": {
+		"ext.quoteStats.specialPage": {
+			"styles": [
+				"resources/ext.quoteStats.css"
+			]
+		}
+	},
+	"ResourceFileModulePaths": { 
+		"localBasePath": "",
+		"remoteExtPath": "QuoteStats"
+	},
+	"SpecialPages": {
+		"QuoteStats": "SpecialQuoteStats"
+	},
+	"MessagesDirs": {
+		"QuoteStats": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"QuoteStatsAlias": "i18n/QuoteStats.i18n.alias.php"
+	},
+	"manifest_version": 2,
+	"requires": {
+		"MediaWiki": ">= 1.34.0",
+		"platform": {
+			"php": ">= 5.6"
+		}
+	}
+}

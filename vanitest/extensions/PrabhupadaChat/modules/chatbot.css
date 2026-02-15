@@ -1,0 +1,216 @@
+/* Container styling */
+#chatbot-container {
+  width: 1000px !important;
+  max-width: 100%; /* Ensures it doesn't overflow viewport */
+  min-width: 1000px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  background: #f9f9f9;
+  margin: 0 auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Login status area */
+#chatbot-login-status {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+/* User info display */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #9a5c2e;
+}
+
+.user-info span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Logout button */
+#logout-btn {
+  background-color: #9a5c2e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+#logout-btn:hover {
+  background-color: #7a4b24;
+}
+
+/* Make sure the Google sign-in button is centered */
+.g_id_signin {
+  display: flex;
+  justify-content: center;
+}
+
+/* Chatbox area */
+#chatbox {
+  height: 350px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Message styling */
+.message {
+  display: flex;
+  width: 100%;
+}
+
+.user-message {
+  background: #0084ff;
+  color: white;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 60%;
+  text-align: left;
+  align-self: flex-end;
+  box-shadow: 2px 2px 10px rgba(0, 132, 255, 0.2);
+}
+
+.bot-message {
+  background: #e5e5ea;
+  color: black;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 60%;
+  text-align: left;
+  align-self: flex-start;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Markdown styling */
+.bot-message h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 10px 0;
+  color: #333;
+}
+
+.bot-message h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 12px 0 8px 0;
+  color: #444;
+}
+
+.bot-message blockquote {
+  border-left: 4px solid #9a5c2e;
+  margin: 10px 0;
+  padding-left: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+.bot-message strong {
+  font-weight: bold;
+}
+
+.bot-message em {
+  font-style: italic;
+}
+
+.bot-message a {
+  color: #9a5c2e;
+  text-decoration: underline;
+}
+
+.bot-message hr {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin: 15px 0;
+}
+
+.highlight {
+  font-size: 18px;
+  font-weight: bold;
+  color: #9a5c2e; /* A warmer color that fits the Prabhupada theme */
+  display: block;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Input area */
+#chat-input {
+  width: calc(100% - 70px);
+  padding: 10px;
+  margin: 10px 0 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+#send-btn {
+  width: 60px;
+  height: 36px;
+  background: #9a5c2e; /* Changed to a warmer color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease-in-out;
+}
+
+#send-btn:hover {
+  background: #7a4b24;
+}
+
+/* Chatbox smooth scrolling */
+#chatbox::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chatbox::-webkit-scrollbar-thumb {
+  background: #9a5c2e;
+  border-radius: 10px;
+}
+
+#chatbox::-webkit-scrollbar-track {
+  background: #f9f9f9;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 1020px) {
+  #chatbot-container {
+    width: 95% !important;
+    min-width: auto;
+  }
+}
+
+/* Google Sign-In button customization */
+#g_id_onload {
+  margin-bottom: 10px;
+}

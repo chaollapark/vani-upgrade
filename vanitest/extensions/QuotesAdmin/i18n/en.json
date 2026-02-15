@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"quotesadmin": "Quotes Admin",
+	"myextension": "Quotes Admin",
+	"quotesadmin-desc": "Vaniquotes administration tool",
+	"myextension-summary": "Vaniquotes administration tool",
+	"action-myextension": "Vaniquotes administration tool",
+    "right-myextension": "Vaniquotes administration tool",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

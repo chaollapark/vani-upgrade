@@ -1,0 +1,32 @@
+{
+  "name": "Revision Manager",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:RevManager",
+  "descriptionmsg": "revmanager-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\RevManager\\SpecialRevManager": "src/SpecialRevManager.php"
+  },
+  "SpecialPages": {
+    "RevManager": "MediaWiki\\Extension\\RevManager\\SpecialRevManager"
+  },
+  "MessagesDirs": {
+    "RevManager": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "RevisionManager/modules"
+  },
+  "ResourceModules": {
+    "ext.revmanager.special": {
+      "scripts": ["main.js", "hist.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "RevManagerAlias": "i18n/en.alias.php"
+  }
+}

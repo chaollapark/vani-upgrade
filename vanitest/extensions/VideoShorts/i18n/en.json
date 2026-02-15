@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"videoshorts": "Video Shorts",
+	"myextension": "Video Shorts",
+	"videoshorts-desc": "Video Shorts Maintenance and Translation",
+	"myextension-summary": "Video Shorts Maintenance and Translation",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

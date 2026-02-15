@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [ "Elad Stern" ]
+	},
+	"vanivideo": "{{Identical|VaniVideo}}",
+	"vanivideo-desc": "{{desc}}",
+	"vanivideo-invalid-source": "{{Identical|Invalid URL domain}}"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Translation Properties Admin",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:TranPropAdmin",
+  "descriptionmsg": "tranpropadmin-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\TranPropAdmin\\SpecialTranPropAdmin": "src/SpecialTranPropAdmin.php"
+  },
+  "SpecialPages": {
+    "TranPropAdmin": "MediaWiki\\Extension\\TranPropAdmin\\SpecialTranPropAdmin"
+  },
+  "MessagesDirs": {
+    "TranPropAdmin": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "TranPropAdmin/modules"
+  },
+  "ResourceModules": {
+    "ext.tranpropadmin.special": {
+      "scripts": ["main.js", "tran.js", "trpr.js", "html.js"],
+      "styles": ["main.css", "tabs.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "VideoShortsAlias": "i18n/en.alias.php"
+  }
+}

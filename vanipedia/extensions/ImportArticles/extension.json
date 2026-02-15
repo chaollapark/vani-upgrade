@@ -1,0 +1,39 @@
+{
+  "name": "Import Articles",
+  "version": "0.0.1",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:ImportArticles",
+  "descriptionmsg": "importarticles-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\ImportArticles\\SpecialImportArticles": "src/SpecialImportArticles.php"
+  },
+  "SpecialPages": {
+    "ImportArticles": "MediaWiki\\Extension\\ImportArticles\\SpecialImportArticles"
+  },
+  "MessagesDirs": {
+    "ImportArticles": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "ImportArticles/modules"
+  },
+  "ResourceModules": {
+    "ext.importarticles.special": {
+      "scripts": ["main.js"],
+      "styles": ["main.css"]
+    }
+  },
+  "AutoloadNamespaces": {
+    "MediaWiki\\Extension\\ImportArticles\\": "src/"
+  },
+  "APIModules": {
+    "importarticles-listfiles": "MediaWiki\\Extension\\ImportArticles\\ApiListFiles",
+    "importarticles-createpages": "MediaWiki\\Extension\\ImportArticles\\ApiCreatePages"
+  },
+  "ExtensionMessagesFiles": {
+    "ImportArticlesAlias": "i18n/en.alias.php"
+  }
+}

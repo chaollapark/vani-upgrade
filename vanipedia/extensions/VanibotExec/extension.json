@@ -1,0 +1,31 @@
+{
+  "name": "Vanibot page edit utility",
+  "version": "0.0.1",
+  "author": [
+    "Elad Stern"
+  ],
+  "url": "https://www.vanipedia.org/wiki/Special:VanibotExec",
+  "descriptionmsg": "vanibotexec-desc",
+  "type": "specialpage",
+  "AutoloadClasses": {
+    "SpecialVanibotExec": "src/SpecialVanibotExec.php"
+  },
+  "SpecialPages": {
+    "VanibotExec": "SpecialVanibotExec"
+  },
+  "MessagesDirs": {
+    "VanibotExec": [
+      "i18n"
+    ]
+  },
+  "ExtensionMessagesFiles": {
+    "QuoteStatsAlias": "i18n/VanibotExec.i18n.alias.php"
+  },
+  "manifest_version": 1,
+  "requires": {
+    "MediaWiki": ">= 1.34.0",
+      "platform": {
+      "php": ">= 5.6"
+    }
+  }
+}

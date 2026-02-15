@@ -1,0 +1,32 @@
+{
+  "name": "User Seva",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:UserSeva",
+  "descriptionmsg": "userseva-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\UserSeva\\SpecialUserSeva": "src/SpecialUserSeva.php"
+  },
+  "SpecialPages": {
+    "UserSeva": "MediaWiki\\Extension\\UserSeva\\SpecialUserSeva"
+  },
+  "MessagesDirs": {
+    "UserSeva": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "UserSeva/modules"
+  },
+  "ResourceModules": {
+    "ext.userseva.special": {
+      "scripts": ["main.js", "seva.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "UserSevaAlias": "i18n/en.alias.php"
+  }
+}

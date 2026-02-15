@@ -1,0 +1,32 @@
+{
+  "name": "Video Shorts",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:VideoShorts",
+  "descriptionmsg": "videoshorts-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\VideoShorts\\SpecialVideoShorts": "src/SpecialVideoShorts.php"
+  },
+  "SpecialPages": {
+    "VideoShorts": "MediaWiki\\Extension\\VideoShorts\\SpecialVideoShorts"
+  },
+  "MessagesDirs": {
+    "VideoShorts": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "VideoShorts/modules"
+  },
+  "ResourceModules": {
+    "ext.videoshorts.special": {
+      "scripts": ["main.js", "vish.js", "html.js", "tran.js"],
+      "styles": ["main.css", "tabs.css", "modal.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "VideoShortsAlias": "i18n/en.alias.php"
+  }
+}

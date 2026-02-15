@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"vanisearch": "Vanipedia Search",
+	"myextension": "Vanipedia Search",
+	"myextension-desc": "Offers various types of search functionality",
+	"myextension-summary": "Offers various types of search functionality",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Garrick Van Buren",
+			"Tom Hutchison",
+			"Elad Stern"
+		]
+	},
+	"skinname-vaniskin": "VaniSkin",
+	"vaniskin-desc": "Provides a skin that focuses on putting your content in the foreground",
+	"vaniskin-browsermsg": "may not look as expected in this version of Internet Explorer. We recommend you upgrade to a newer version of Internet Explorer or switch to a browser like Firefox or Chrome.",
+	"vaniskin-menutitle": "Menu",
+	"vaniskin-menunavback": "Back"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "VaniUrlRouter",
+	"author": "Elad Stern",
+	"description": "Extension that looks for special characters in page titles, helping them reach the proper address",
+	"version": "1.0",
+	"type": "other",
+	"manifest_version": 2,
+	"AutoloadClasses": {
+		"VaniUrlRouterHooks": "includes/VaniUrlRouterHooks.php"
+	},
+	"Hooks": {
+		"BeforeDisplayNoArticleText": "VaniUrlRouterHooks::onBeforeDisplayNoArticleText"
+	}
+}

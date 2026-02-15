@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [ "Elad Stern" ]
+	},
+	"vanivideo": "VaniVideo",
+	"vanivideo-desc": "Embedded video playback using HTML5 Video Player: Vanipedia version",
+	"vanivideo-invalid-source": "Invalid source, must be from amazon or causelessmercy.com"
+}

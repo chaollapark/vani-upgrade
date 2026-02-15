@@ -1,0 +1,89 @@
+h1 {
+    font-weight: normal;
+    font-size: 150%;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+table {
+  display: contents;
+  width: 1%;
+}
+
+table td {
+  white-space: nowrap;
+  padding: 3px !important;
+  border: 1px solid grey;
+}
+
+.number {
+  text-align: right;
+  background-color: beige;
+  color: blue;
+}
+
+.text {
+  background-color: silver; /* NB: must be same as .corner color */
+  color: black;
+}
+
+.total {
+  background-color: wheat;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  display: none;
+  float: right;
+  margin-left: 5px;
+  color: orangered;
+}
+
+.right.active {
+  display: inline-block;
+}
+
+.corner {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  border: 1px solid grey;
+  padding: 3px;
+  color: silver; /* NB: must be same as .text background-color */
+}
+
+.corner.active {
+  color: orangered;
+}
+
+.mrg_right5 {
+  margin-right: 5px;
+}
+
+select, input[type="date"], input[type="radio"] {
+/*  display: inline-block;*/
+  height: auto;
+  margin: 0;
+  padding: 2px 20px 2px 2px;
+}
+
+.paramblock {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.paramunit {
+  display: block !important;
+  width: 100% !important;
+  height: 25px !important;
+  margin-bottom: 3px !important;
+}

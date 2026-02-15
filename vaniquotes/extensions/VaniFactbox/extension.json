@@ -1,0 +1,17 @@
+{
+	"name": "VaniFactbox",
+	"version": "1.0",
+	"author": ["Yadasampati dasa"],
+	"description": "Displays compiler, date, and quote count metadata in a factbox on article footers",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadClasses": {
+		"VaniFactboxHooks": "VaniFactboxHooks.php"
+	},
+	"Hooks": {
+		"ArticleViewFooter": "VaniFactboxHooks::onArticleViewFooter"
+	},
+	"manifest_version": 2
+}

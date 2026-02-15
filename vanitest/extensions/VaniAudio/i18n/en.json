@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [ "Elad Stern" ]
+	},
+	"vaniaudio": "VaniAudio",
+	"vaniaudio-desc": "Embedded audio playback using HTML5 Audio Player: Vanipedia version",
+	"vaniaudio-invalid-url": "Invalid URL, must be MP3",
+	"vaniaudio-invalid-source": "Invalid source, must be from amazon or causelessmercy.com"
+}

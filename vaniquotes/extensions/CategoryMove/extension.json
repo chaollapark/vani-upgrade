@@ -1,0 +1,57 @@
+{
+	"name": "Category Move",
+	"version": "0.0.0",
+	"author": [
+		"Elad Stern"
+	],
+	"url": "https://www.vanipedia.org/wiki/Extension:CategoryMove",
+	"descriptionmsg": "categorymove-desc",
+	"type": "specialpage",
+	"GroupPermissions": {
+		"sysop": {
+			"categorymove": true
+		}
+	},
+	"AvailableRights": [
+		"categorymove"
+	],
+	"AutoloadClasses": {
+		"SpecialCatMove": "src/SpecialCatMove.php",
+		"CategoryMoveJob": "src/CategoryMoveJob.php"
+	},
+	"ResourceModules": {
+		"ext.categoryMove.specialPage": {
+			"scripts": [
+				"src/CategoryMove.js"
+			],
+			"styles": [
+				"resources/ext.categoryMove.css"
+			]
+		}
+	},
+	"ResourceFileModulePaths": { 
+		"localBasePath": "",
+		"remoteExtPath": "CategoryMove"
+	},
+	"SpecialPages": {
+		"CategoryMove": "SpecialCatMove"
+	},
+	"JobClasses": {
+		"categoryMove": "CategoryMoveJob"
+	},
+	"MessagesDirs": {
+		"CategoryMove": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"CategoryMoveAlias": "i18n/CategoryMove.i18n.alias.php"
+	},
+	"manifest_version": 2,
+	"requires": {
+		"MediaWiki": ">= 1.27.0",
+		"platform": {
+			"php": ">= 5.6"
+		}
+	}
+}

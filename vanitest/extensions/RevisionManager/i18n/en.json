@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"revmanager": "Revision Manager",
+	"myextension": "Revision Manager",
+	"revmanager-desc": "Page text revision management",
+	"myextension-summary": "Page text revision management",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

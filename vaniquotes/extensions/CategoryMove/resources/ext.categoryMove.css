@@ -1,0 +1,25 @@
+div.catSuggestions
+{
+    position: absolute;
+    border: 1px solid black;
+    background-color: white;
+}
+
+div.catSuggestions .item
+{
+    padding: 2px;
+    cursor: default;
+    font-size: smaller;
+}
+
+div.catSuggestions .item.active
+{
+    background-color: rgb(91, 106, 238);
+    color: white;
+}
+
+div.catSuggestions .item:hover
+{
+    background-color: blue;
+    color: white;
+}

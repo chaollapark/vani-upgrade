@@ -1,0 +1,32 @@
+{
+  "name": "User Admin",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:UserAdmin",
+  "descriptionmsg": "useradmin-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\UserAdmin\\SpecialUserAdmin": "src/SpecialUserAdmin.php"
+  },
+  "SpecialPages": {
+    "UserAdmin": "MediaWiki\\Extension\\UserAdmin\\SpecialUserAdmin"
+  },
+  "MessagesDirs": {
+    "UserAdmin": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "UserAdmin/modules"
+  },
+  "ResourceModules": {
+    "ext.useradmin.special": {
+      "scripts": ["main.js", "code.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "UserAdminAlias": "i18n/en.alias.php"
+  }
+}

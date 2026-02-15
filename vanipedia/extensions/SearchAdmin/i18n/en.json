@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"searchadmin": "Search Admin",
+	"myextension": "Search Admin",
+	"searchadmin-desc": "Search administration tool",
+	"myextension-summary": "Search administration tool",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

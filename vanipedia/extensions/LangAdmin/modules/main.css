@@ -1,0 +1,220 @@
+i.hidden {
+  display: none;
+}
+
+i.arrow {
+  color: brown;
+}
+
+input.edit_lang {
+  color: blue;
+}
+
+#tbl_languages {
+ width: 705px;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+thead th {
+  height: 30px;
+  background: darkgray;
+}
+
+tbody {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+th, td {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid black;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+th, td {
+  font-size: 90% !important;
+  padding: 2px !important;
+  max-width: 600px;
+  word-break: break-all;
+  vertical-align: top;
+}
+
+td.chb_input {
+  text-align: center;
+}
+
+select {
+  padding: 1px 13px 1px 0px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+button {
+  margin: 0 2px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+label {
+  margin-left: 3px !important;
+  margin-right: 0px !important;
+}
+
+.sort_arrow {
+  float: right;
+}
+
+.selrow td {
+  background-color: #e3a692 !important;
+}
+
+.number_cel {
+  text-align: right;
+}
+
+.checkbox_input, .radio_input {
+  margin-bottom: 0 !important;
+}
+
+.date_input {
+  display: inline-block !important;
+  height: 25px !important;
+  padding: 0 !important;
+}
+
+.dummy_input {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.sel_unit {
+  margin-left: 5px;
+}
+
+#div_container {
+  margin-bottom: 5px;
+}
+
+#div_left, #div_right {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+#div_rad_display {
+  position: absolute;
+  display: none;
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+#div_master, #div_detail {
+  max-height: 750px;
+  float: left;
+  margin-right: 10px;
+}
+
+#div_buttons {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#spn_date {
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  width: 110px;
+}
+
+#inp_del_until {
+  position: absolute; 
+  opacity: 0.0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#inp_del_dummy {
+  border: none;
+  height: 90%;
+  padding-left: 5px !important;
+}
+
+#spn_del_dummy {
+  display: inline-block;
+  width: 20px;
+  z-index: 2;
+  float: right;
+  padding-top: 3px;
+}
+
+#inp_filt_master {
+  display: inline-block;
+  width: auto;
+}
+
+/* MODAL WINDOW */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 25%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#div_modal_error {
+  margin-top: 5px;
+  color: red;
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"ai_categorywrapper": "AI Category Wrapper",
+	"myextension": "AI Category Wrapper",
+	"ai_categorywrapper-desc": "AI Category Wrapper",
+	"myextension-summary": "AI Category Wrapper",
+	"action-myextension": "AI Category Wrapper",
+    "right-myextension": "AI Category Wrapper",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

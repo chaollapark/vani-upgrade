@@ -1,0 +1,16 @@
+.stats
+{
+    border: 1px solid #ccc;
+}
+
+.stats th
+{
+    font-style: italic;
+}
+
+.stats td,.stats th
+{
+    border: 1px solid #bbb;
+    padding: 2px;
+    margin: 1px;
+}

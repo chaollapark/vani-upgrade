@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"ndropstat": "Nectar Drops Statistics",
+	"myextension": "Nectar Drops Statistics",
+	"ndropstat-desc": "Nectar Drop creation data statistics",
+	"myextension-summary": "Nectar Drop creation data statistics",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

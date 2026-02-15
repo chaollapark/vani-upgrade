@@ -1,0 +1,31 @@
+{
+  "name": "AI Page Linker",
+  "version": "0.0.1",
+  "author": [
+    "Yadasampati dasa"
+  ],
+  "url": "https://www.vaniquotes.org/wiki/Special:AI_PageLinker",
+  "descriptionmsg": "ai_pagelinker-desc",
+  "type": "specialpage",
+  "AutoloadClasses": {
+    "SpecialAI_PageLinker": "src/SpecialAI_PageLinker.php"
+  },
+  "SpecialPages": {
+    "AI_PageLinker": "SpecialAI_PageLinker"
+  },
+  "MessagesDirs": {
+    "AI_PageLinker": [
+      "i18n"
+    ]
+  },
+  "ExtensionMessagesFiles": {
+    "QuoteStatsAlias": "i18n/QuoteStats.i18n.alias.php"
+  },
+  "manifest_version": 2,
+  "requires": {
+    "MediaWiki": ">= 1.34.0",
+      "platform": {
+      "php": ">= 5.6"
+    }
+  }
+}

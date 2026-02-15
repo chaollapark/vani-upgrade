@@ -1,0 +1,39 @@
+{
+	"name": "VaniVideo",
+	"version": "1.1",
+	"author": "Elad Stern",
+	"url": "https://vanipedia.org",
+	"descriptionmsg": "vanivideo-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"MessagesDirs": {
+		"VaniVideo": [ "i18n" ]
+	},
+	"AutoloadClasses": {
+		"VaniVideo": "VaniVideo.body.php",
+		"VaniVideoHooks": "VaniVideoHooks.php"
+	},
+	"ExtensionFunctions": [
+		"VaniVideo::initFromGlobals"
+	],
+	"Hooks": {
+		"ParserFirstCallInit": "VaniVideoHooks::onParserFirstCallInit",
+		"BeforePageDisplay": "VaniVideoHooks::onBeforePageDisplay"
+	},
+	"ResourceModules": {
+		"ext.VaniVideo.mobileonly": {
+			"scripts": "VaniVideo.mobileonly.js",
+			"localBasePath": "",
+			"remoteExtPath": "VaniVideo"
+		},
+		"ext.VaniVideo.nomobile": {
+			"scripts": "VaniVideo.nomobile.js",
+			"localBasePath": "",
+			"remoteExtPath": "VaniVideo"
+		}
+	},
+	"manifest_version": 2
+}

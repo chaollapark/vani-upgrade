@@ -1,0 +1,44 @@
+/* Container for file list */
+#file-list-container {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    max-width: 500px;
+}
+
+.file-item {
+    display: flex;           /* horizontal alignment */
+    align-items: center;     /* vertical center for flex container */
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Checkbox alignment fix */
+.file-item input[type="checkbox"] {
+    vertical-align: middle;  /* aligns checkbox with text */
+    margin: 0;               /* remove any browser default margin */
+}
+
+/* Space between checkbox and label */
+.file-item label {
+    margin-left: 6px;
+    line-height: 1.2;        /* ensures text is vertically aligned */
+}
+
+/* Button styling */
+.custom-load-btn {
+    margin-top: 8px;
+    margin-right: 8px;
+    padding: 6px 12px;
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.custom-load-btn:hover {
+    background-color: #005a9e;
+}

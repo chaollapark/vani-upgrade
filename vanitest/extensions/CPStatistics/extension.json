@@ -1,0 +1,32 @@
+{
+  "name": "Category and Page Statistics",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:CPStat",
+  "descriptionmsg": "cpstat-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\CPStat\\SpecialCPStat": "src/SpecialCPStat.php"
+  },
+  "SpecialPages": {
+    "CPStat": "MediaWiki\\Extension\\CPStat\\SpecialCPStat"
+  },
+  "MessagesDirs": {
+    "CPStat": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "CPStatistics/modules"
+  },
+  "ResourceModules": {
+    "ext.cpstat.special": {
+      "scripts": ["main.js", "html.js", "table.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "CPStatAlias": "i18n/en.alias.php"
+  }
+}

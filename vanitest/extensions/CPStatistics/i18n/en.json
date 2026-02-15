@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"cpstat": "Category and Page Statistics",
+	"myextension": "Category and Page Statistics",
+	"cpstat-desc": "Statistics utility for categories and pages",
+	"myextension-summary": "Statistics utility for categories and pages",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

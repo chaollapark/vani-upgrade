@@ -1,0 +1,32 @@
+{
+  "name": "Language Admin",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:LangAdmin",
+  "descriptionmsg": "langadmin-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\LangAdmin\\SpecialLangAdmin": "src/SpecialLangAdmin.php"
+  },
+  "SpecialPages": {
+    "LangAdmin": "MediaWiki\\Extension\\LangAdmin\\SpecialLangAdmin"
+  },
+  "MessagesDirs": {
+    "LangAdmin": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "LangAdmin/modules"
+  },
+  "ResourceModules": {
+    "ext.langadmin.special": {
+      "scripts": ["main.js", "code.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "LangAdminAlias": "i18n/en.alias.php"
+  }
+}

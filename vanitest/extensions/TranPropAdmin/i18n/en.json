@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"tranpropadmin": "Translation Properties Admin",
+	"myextension": "Translation Properties Admin",
+	"tranpropadmin-desc": "Translation Properties Administration Tool",
+	"myextension-summary": "Translation Properties Administration Tool",
+	"action-myextension": "Translation Properties Administration Tool",
+    "right-myextension": "Translation Properties Administration Tool",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

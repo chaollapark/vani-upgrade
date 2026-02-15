@@ -1,0 +1,136 @@
+/* @font-face {
+	font-family: 'Cambria';
+	src: url('Cambria-Italic.eot');
+	src: local('Cambria Italic'), local('Cambria-Italic'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-Italic.eot?#iefix') format('embedded-opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-Italic.woff') format('woff'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Cambria';
+	src: url('Cambria-Bold.eot');
+	src: local('Cambria Bold'), local('Cambria-Bold'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-Bold.eot?#iefix') format('embedded-opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-Bold.woff') format('woff'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Cambria';
+	src: url('Cambria.eot');
+	src: local('Cambria'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria.eot?#iefix') format('embedded-opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria.woff') format('woff'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Cambria';
+	src: url('Cambria-BoldItalic.eot');
+	src: local('Cambria Bold Italic'), local('Cambria-BoldItalic'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-BoldItalic.eot?#iefix') format('embedded-opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-BoldItalic.woff') format('woff'),
+		url('/w/skins/VaniSkin/assets/fonts/Cambria-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Bona Nova';
+	src: url('BonaNova-Italic.otf');
+	src: url('/w/skins/VaniSkin/assets/fonts/BonaNova-Italic.otf') format('opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/BonaNova-Italic.woff2') format('woff2'),
+		url('/w/skins/VaniSkin/assets/fonts/BonaNova-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Bona Nova';
+	src: url('BonaNova-Bold.otf');
+	src: url('/w/skins/VaniSkin/assets/fonts/BonaNova-Bold.otf') format('opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/BonaNova-Bold.woff2') format('woff2'),
+		url('/w/skins/VaniSkin/assets/fonts/BonaNova-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Bona Nova';
+	src: url('/w/skins/VaniSkin/assets/fonts/BonaNova-Regular.otf');
+	src: url('/w/skins/VaniSkin/assets/fonts/BonaNova-Regular.otf') format('opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/BonaNova-Regular.woff2') format('woff2'),
+		url('/w/skins/VaniSkin/assets/fonts/BonaNova-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+} */
+
+@font-face {
+	font-family: 'Franklin Gothic Condensed BT';
+	src: url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.otf');
+	src: url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.eot') format('embedded-opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.otf') format('opentype'),
+		url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.woff') format('woff'),
+		url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.woff2') format('woff2'),
+		url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.ttf') format('truetype'),
+		url('/w/skins/VaniSkin/assets/fonts/Franklin Gothic Condensed BT.svg') format('svg');
+}
+
+/* div.vanisource p, div.vanisource dl, div.vanisource blockquote, div.vanisource li,
+div.vaniquotes, div.vaniquotes p, div.vaniquotes dl, div.vaniquotes blockquote, div.vaniquotes li, .quote {
+	font-family: Times;
+}
+	
+@layer generalFonts {
+	div.vanipedia, div.vanipedia p, div.vanipedia dl, div.vanipedia blockquote, div.vanipedia li {
+		font-family: Times;
+	}
+} */
+
+div[dir="rtl"], div[dir="rtl"] p, div[dir="rtl"] blockquote, div[dir="rtl"] li, div[dir="rtl"] dl {
+	font-family: Tahoma;
+}
+
+/* div.vanisource p, div.vanisource dl, div.vanisource blockquote, div.vanisource li,
+div.vanipedia,
+div.vaniquotes {
+	font-size: 118%;
+} */
+
+div.vanipedia:has(.MainPageBG) {
+	font-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+big {
+	font-family: Tahoma;
+}
+
+.quote {
+	font-family: inherit !important;
+}
+
+div.lectconv h1#firstHeading {
+	font-family: "Franklin Gothic Condensed BT", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: -0.5px;
+}
+
+@media only screen and (min-width: 40.0625em) {
+div.lectconv h1#firstHeading {
+	font-size: 30pt;
+}
+}

@@ -1,0 +1,42 @@
+{
+	"name": "IframePage",
+	"version": "0.2.1",
+	"author": "Ike Hecht for WikiWorks",
+	"url": "https://www.mediawiki.org/wiki/Extension:IframePage",
+	"descriptionmsg": "iframepage-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "specialpage",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadClasses": {
+		"SpecialIframePage": "SpecialIframePage.php"
+	},
+	"SpecialPages": {
+		"IframePage": "SpecialIframePage"
+	},
+	"MessagesDirs": {
+		"IframePage": [ "i18n" ]
+	},
+	"ExtensionMessagesFiles": {
+		"IframePageAlias": "IframePage.alias.php"
+	},
+	"ResourceModules": {
+		"ext.IframePage": {
+			"styles": "IframePage.css",
+			"localBasePath": "",
+			"remoteExtPath": "IframePage"
+		}
+	},
+	"config": {
+		"IframePageSrc": {
+			"value": {},
+			"description": "Associative array of page name => iframe src URL"
+		},
+		"IframePageAllowPath": {
+			"value": false,
+			"description": "Allow appending path parameter to iframe src"
+		}
+	},
+	"manifest_version": 2
+}

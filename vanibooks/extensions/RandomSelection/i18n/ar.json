@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"randomselection-desc": "يعرض خيارا عشوائيا من المجموعة المحددة",
+	"randomselection-invalidweights": "لا توجد خيارات صالحة"
+}

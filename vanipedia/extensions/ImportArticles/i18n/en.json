@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"importarticles": "Import Articles",
+	"myextension": "Import Articles",
+	"importarticles-desc": "Import Articles",
+	"myextension-summary": "Import Articles",
+	"action-myextension": "Import Articles",
+    "right-myextension": "Import Articles",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

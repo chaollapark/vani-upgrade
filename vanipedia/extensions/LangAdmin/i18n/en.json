@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"langadmin": "Language Admin",
+	"myextension": "Language Admin",
+	"langadmin-desc": "Language administration tool",
+	"myextension-summary": "Language administration tool",
+	"action-myextension": "Maintain languages for Nectar Drops",
+    "right-myextension": "Maintain languages for Nectar Drops",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

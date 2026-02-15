@@ -1,0 +1,31 @@
+{
+  "name": "Video Shorts",
+  "version": "0.0.1",
+  "author": [
+    "Yadasampati dasa"
+  ],
+  "url": "https://www.vanipedia.org/wiki/Special:VideoShorts",
+  "descriptionmsg": "videoshorts-desc",
+  "type": "specialpage",
+  "AutoloadClasses": {
+    "SpecialVideoShorts": "src/SpecialVideoShorts.php"
+  },
+  "SpecialPages": {
+    "VideoShorts": "SpecialVideoShorts"
+  },
+  "MessagesDirs": {
+    "VideoShorts": [
+      "i18n"
+    ]
+  },
+  "ExtensionMessagesFiles": {
+    "QuoteStatsAlias": "i18n/QuoteStats.i18n.alias.php"
+  },
+  "manifest_version": 1,
+  "requires": {
+    "MediaWiki": ">= 1.34.0",
+      "platform": {
+      "php": ">= 5.6"
+    }
+  }
+}

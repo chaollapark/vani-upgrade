@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elad Stern"
+		]
+	},
+	"quotestats": "Statistics for Quotes from Vaniquote Pages",
+	"quotestats-desc": "Summarizes statistics for pages with different numbers of quotes",
+	"quotestats-summary": "On this special page, pages are counted for different numbers of quotes.",
+	"action-quotestats": "View statistics of pages of varying quote numbers",
+    "right-quotestats": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

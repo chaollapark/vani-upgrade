@@ -1,0 +1,31 @@
+{
+  "name": "Nectar Drop Translation",
+  "version": "0.0.1",
+  "author": [
+    "Yadasampati dasa"
+  ],
+  "url": "/wiki/Special:NDropTrans",
+  "descriptionmsg": "ndroptrans-desc",
+  "type": "specialpage",
+  "AutoloadClasses": {
+    "SpecialNDropTrans": "src/SpecialNDropTrans.php"
+  },
+  "SpecialPages": {
+    "NDropTrans": "SpecialNDropTrans"
+  },
+  "MessagesDirs": {
+    "NDropTrans": [
+      "i18n"
+    ]
+  },
+  "manifest_version": 2,
+  "requires": {
+    "MediaWiki": ">= 1.34.0",
+      "platform": {
+      "php": ">= 5.6"
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "NDropTransAlias": "i18n/en.alias.php"
+  }
+}

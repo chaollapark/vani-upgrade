@@ -1,0 +1,32 @@
+{
+  "name": "Search Admin",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:SearchAdmin",
+  "descriptionmsg": "searchadmin-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\SearchAdmin\\SpecialSearchAdmin": "src/SpecialSearchAdmin.php"
+  },
+  "SpecialPages": {
+    "SearchAdmin": "MediaWiki\\Extension\\SearchAdmin\\SpecialSearchAdmin"
+  },
+  "MessagesDirs": {
+    "SearchAdmin": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "SearchAdmin/modules"
+  },
+  "ResourceModules": {
+    "ext.searchadmin.special": {
+      "scripts": ["data.js", "main.js", "admi.js", "util.js", "gnrt.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "SearchAdminAlias": "i18n/en.alias.php"
+  }
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [ "Elad Stern" ]
+	},
+	"vaniaudio": "{{Identical|VaniAudio}}",
+	"vaniaudio-desc": "{{desc}}",
+	"vaniaudio-invalid-url": "{{Identical|Invalid URL file extension}}",
+	"vaniaudio-invalid-source": "{{Identical|Invalid URL domain}}"
+}

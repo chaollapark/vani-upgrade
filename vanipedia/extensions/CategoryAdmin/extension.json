@@ -1,0 +1,32 @@
+{
+  "name": "Category Admin",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:CategoryAdmin",
+  "descriptionmsg": "categoryadmin-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\CategoryAdmin\\SpecialCategoryAdmin": "src/SpecialCategoryAdmin.php"
+  },
+  "SpecialPages": {
+    "CategoryAdmin": "MediaWiki\\Extension\\CategoryAdmin\\SpecialCategoryAdmin"
+  },
+  "MessagesDirs": {
+    "CategoryAdmin": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "CategoryAdmin/modules"
+  },
+  "ResourceModules": {
+    "ext.categoryadmin.special": {
+      "scripts": ["main.js", "catg.js", "html.js"],
+      "styles": ["main.css", "tabs.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "CategoryAdminAlias": "i18n/en.alias.php"
+  }
+}

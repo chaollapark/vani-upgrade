@@ -1,0 +1,172 @@
+input[type=text],input[type=password] {
+  display: inline-block;
+  height: 27px;
+  width: auto;
+  margin: 0;
+  color: blue;
+}
+
+input[type="checkbox"] {
+  margin: 0 0 0 5px;
+}
+
+select, input[type="date"], input[type="radio"] {
+  height: auto;
+  margin: 0;
+  padding: 2px 20px 2px 2px;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 150%;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+textarea {
+  margin-right: 5px;
+}
+
+td.caption {
+  color: dimgrey;
+  font-weight: bold;
+}
+
+td.data {  
+  color:blue;
+  text-align: right;
+  padding: 3px;
+}
+
+.caption {
+  margin-left: 5px;
+  font-size: small;
+  font-weight: bold;
+}
+
+.trans_block {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  width: 1000px;
+}
+
+.translation {
+  color:blue;
+  font-weight: normal;
+}
+
+.pad5_left {
+  padding:5px; float:left;
+}
+
+.mrg_right5 {
+  margin-right: 5px;
+}
+
+.inline_70 {
+  display: inline-block;
+  width: 70px;
+}
+
+.width_100 {
+  width: 100% !important;
+}
+
+.width_auto {
+  width: auto;
+}
+
+.setup_tbl {
+  width: 1%;
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+.setup_tbl td {
+  padding: 2px;
+}
+
+.setup_tbl button {
+  margin: 0;
+}
+
+.tbl_container {
+  overflow-y: scroll;
+  height: 515px;
+  width: fit-content;
+}
+
+
+span.login_error {
+  color: red;
+  display: none;
+  padding-left: 3px;
+}
+
+div.btn_drop {
+  margin: 2px;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+div.btn_odd {
+  background-color:lightsteelblue;
+}
+
+div.btn_even {
+  background-color:lightgrey;
+}
+
+button {
+  color:maroon;
+}
+
+#edit_trans_text {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#div_total {
+  font-family: Tahoma;
+  font-size: small;
+  color: blue;
+  background-color: #feffcb;
+  border:1px solid #aaa;
+  margin-top: 5px;
+  padding-left: 5px;
+}
+
+#div_ndrop_select {
+  display: inline-block;
+  overflow-y: scroll; 
+  border:1px solid #aaa;
+  height:500px; 
+  font-size: 14px;
+  width: 100%;
+}
+
+#div_ndrop_orig, #div_ndrop_tran {
+  vertical-align: top;
+  margin-left: 10px; 
+  margin-top: 10px; 
+  width: 515px;
+}
+
+#div_ndrop_orig div {
+  max-width: 100% !important;
+}
+
+#div_ndrop_tran div {
+  max-width: 100% !important;
+}
+
+.warning {
+  color: red;
+/*  margin-top: 5px;*/
+  display: none;
+  font-weight: normal;
+  font-size: inherit;
+}

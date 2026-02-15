@@ -1,0 +1,32 @@
+{
+  "name": "Quotes Admin",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:QuotesAdmin",
+  "descriptionmsg": "quotesadmin-desc",
+  
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\QuotesAdmin\\SpecialQuotesAdmin": "src/SpecialQuotesAdmin.php"
+  },
+  "SpecialPages": {
+    "QuotesAdmin": "MediaWiki\\Extension\\QuotesAdmin\\SpecialQuotesAdmin"
+  },
+  "MessagesDirs": {
+    "QuotesAdmin": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "QuotesAdmin/modules"
+  },
+  "ResourceModules": {
+    "ext.quotesadmin.special": {
+      "scripts": ["main.js", "vani.js", "vqse.js", "vqhi.js", "html.js"],
+      "styles": ["main.css", "tabs.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "QuotesAdminAlias": "i18n/en.alias.php"
+  }
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elad Stern"
+		]
+	},
+	"vanibotexec": "Vanibot Execution",
+	"myextension": "Vanibot Execution",
+	"vanibotexec-desc": "Vanibot execution result page edit utility",
+	"myextension-summary": "Vanibot execution result page edit utility",
+	"action-myextension": "View statistics of pages of varying quote numbers",
+    "right-myextension": "view statistics for page quotes",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

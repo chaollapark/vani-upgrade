@@ -1,0 +1,32 @@
+{
+  "name": "Nectar Drop Statistics",
+  "version": "0.0.3",
+  "author": "Yadasampati dasa",
+  "type": "specialpage",
+  "manifest_version": 2,
+  "url": "/wiki/Special:NDropStat",
+  "descriptionmsg": "ndropstat-desc",
+
+  "AutoloadClasses": {
+    "MediaWiki\\Extension\\NDropStat\\SpecialNDropStat": "src/SpecialNDropStat.php"
+  },
+  "SpecialPages": {
+    "NDropStat": "MediaWiki\\Extension\\NDropStat\\SpecialNDropStat"
+  },
+  "MessagesDirs": {
+    "NDropStat": ["i18n"]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+	"remoteExtPath": "NDropStatistics/modules"
+  },
+  "ResourceModules": {
+    "ext.ndropstat.special": {
+      "scripts": ["main.js", "html.js", "table.js"],
+      "styles": ["main.css", "fonts.css"]
+    }
+  },
+  "ExtensionMessagesFiles": {
+    "NDropStatAlias": "i18n/en.alias.php"
+  }
+}

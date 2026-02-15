@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yadasampati dasa"
+		]
+	},
+	"categoryadmin": "Category Admin",
+	"myextension": "Category Admin",
+	"categoryadmin-desc": "Category administration tool",
+	"myextension-summary": "Category administration tool",
+	"action-myextension": "Category administration tool",
+    "right-myextension": "Category administration tool",
+    "-viewoptsection": "View options",
+    "form-fromnum": "From #:",
+    "form-tonum": "To #:"
+}

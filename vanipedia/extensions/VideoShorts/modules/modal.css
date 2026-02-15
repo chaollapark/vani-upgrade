@@ -1,0 +1,101 @@
+.modal-wrapper {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #dddddd;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 2px solid #717080;
+  border-radius: 4px;
+}
+
+.modal-content label {
+  color: #666666;
+}
+
+.modal-content .login {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 2px 0px 8px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: blue;
+}
+
+.modal-block {
+  padding: 15px 15px 0px 15px;
+}
+
+.modal-button {
+  background-color: #848691;
+  color: white;
+  padding: 5px 10px;
+  margin: 0px 0;
+  border: 1px solid #717080;
+  border-radius: 4px;
+  cursor: pointer;
+  width: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: -12.5px;
+  right: -12.5px;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-image: url('../close.png');
+}
+
+.modal-error {
+  color: red;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+/* input controls */
+.transpair {
+  display: inline-block;
+  max-width: min-content;
+}

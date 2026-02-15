@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira"
+		]
+	},
+	"randomselection-desc": "Apresenta uma opção aleatória escolhida de entre o conjunto fornecido",
+	"randomselection-invalidweights": "Nenhuma escolha válida"
+}

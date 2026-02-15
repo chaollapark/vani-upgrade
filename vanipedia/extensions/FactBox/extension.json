@@ -1,0 +1,17 @@
+{
+	"name": "FactBox",
+	"version": "1.0.0",
+	"author": "Yadasampati dasa",
+	"description": "Adds a FACT BOX div to Yada test pages containing 'Compiler'",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadClasses": {
+		"FactBoxHooks": "FactBoxHooks.php"
+	},
+	"Hooks": {
+		"OutputPageParserOutput": "FactBoxHooks::onOutputPageParserOutput"
+	},
+	"manifest_version": 2
+}

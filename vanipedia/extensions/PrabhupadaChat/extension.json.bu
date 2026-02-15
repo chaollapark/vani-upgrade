@@ -1,0 +1,33 @@
+{
+  "name": "PrabhupadaChat",
+  "version": "1.0",
+  "author": "Manik",
+  "description": "A simple chatbot UI that interacts with a Python RAG pipeline.",
+  "type": "parserhook",
+  "requires": {
+    "MediaWiki": ">=1.40.0"
+  },
+  "AutoloadClasses": {
+    "Chatbot": "includes/Chatbot.php",
+    "ChatbotAjax": "includes/ChatbotAjax.php"
+  },
+  "ResourceModules": {
+    "ext.chatbot": {
+      "scripts": ["modules/chatbot.js"],
+      "styles": ["modules/chatbot.css"],
+      "dependencies": ["mediawiki.api", "jquery"],
+      "position": "bottom",
+      "localBasePath": "extensions/PrabhupadaChat",
+      "remoteExtPath": "PrabhupadaChat"
+    }
+  },
+  "Hooks": {
+    "ParserFirstCallInit": ["Chatbot::onParserInit"]
+  },
+  "API": {
+    "ChatbotAjax": {
+      "class": "ChatbotAjax",
+      "services": []
+    }
+  }
+}

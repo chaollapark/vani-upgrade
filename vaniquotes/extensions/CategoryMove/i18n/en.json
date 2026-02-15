@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elad Stern"
+		]
+	},
+	"categorymove": "Category move",
+	"categorymove-desc": "Adds the Category Move functionality.",
+	"categorymove-summary": "On this special page, pages can be moved from one category to another.",
+	"group-categorymoverole": "categorymove",
+	"group-categorymoverole-member": "sysop",
+	"grouppage-categorymoverole": "{{ns:project}}:categorymove",
+	"action-categorymove": "Moves batches of pages between categories",
+    "right-categorymove": "to do category batch move",
+    "-catnamessection": "Category Names",
+    "form-sourcecat": "Source Category",
+    "form-destcat": "Destination Category",
+    "form-keepsource": "Also keep in source category"
+}

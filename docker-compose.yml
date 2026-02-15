@@ -1,0 +1,505 @@
+services:
+  mediawiki-vanisource:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vanisource
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANISOURCE}
+    restart: unless-stopped
+    volumes:
+      # LocalSettings.php
+      - ./vanisource/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      # Global permissions (inlined in LocalSettings, but mount for reference)
+      - ./vanisource/global:/var/www/html/w/global:ro
+      # Custom skin
+      - ./vanisource/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      # Custom extensions (modern ones with extension.json)
+      - ./vanisource/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vanisource/extensions/VaniUrlRouter:/var/www/html/w/extensions/VaniUrlRouter:ro
+      - ./vanisource/extensions/VanibotExec:/var/www/html/w/extensions/VanibotExec:ro
+      - ./vanisource/extensions/PrabhupadaChat:/var/www/html/w/extensions/PrabhupadaChat:ro
+      - ./vanisource/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      # Legacy extensions (migrated with new extension.json)
+      - ./vanisource/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
+      - ./vanisource/extensions/VaniVideo:/var/www/html/w/extensions/VaniVideo:ro
+      - ./vanisource/extensions/MarkTerms:/var/www/html/w/extensions/MarkTerms:ro
+      # Non-bundled extensions from original install
+      - ./vanisource/extensions/HeaderTabs:/var/www/html/w/extensions/HeaderTabs:ro
+      - ./vanisource/extensions/Variables:/var/www/html/w/extensions/Variables:ro
+      - ./vanisource/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vanisource/extensions/RandomImage:/var/www/html/w/extensions/RandomImage:ro
+      - ./vanisource/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vanisource/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vanisource/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vanisource/extensions/Renameuser:/var/www/html/w/extensions/Renameuser:ro
+      # Menu data (local copy, vanipedia.org is behind Cloudflare)
+      - ./vanisource/menu.dat:/var/www/html/w/menu.dat:ro
+      # Images from vani-mirror (read-write for thumbnails)
+      - /data/vani-mirror/www/vanisource/w/images:/var/www/html/w/images
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vanisource:
+    image: nginx:alpine
+    container_name: nginx-vanisource
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8082:80"
+    volumes:
+      - ./nginx/vanisource.conf:/etc/nginx/conf.d/default.conf:ro
+      # Share the MW static files with nginx
+      - ./vanisource/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - /data/vani-mirror/www/vanisource/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vanisource
+
+  mediawiki-vanipedia:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vanipedia
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANIPEDIA}
+    restart: unless-stopped
+    volumes:
+      # LocalSettings.php
+      - ./vanipedia/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      # Global permissions
+      - ./vanipedia/global:/var/www/html/w/global:ro
+      # Custom skin
+      - ./vanipedia/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      # Menu data
+      - ./vanipedia/menu.dat:/var/www/html/w/menu.dat:ro
+      # Environment config for custom extensions
+      - ./vanipedia/env/vanipedia.env.php:/var/www/vanipedia/vanipedia.env.php:ro
+      # --- Extensions reused from vanisource (already MW 1.43 compatible) ---
+      - ./vanipedia/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
+      - ./vanipedia/extensions/VaniVideo:/var/www/html/w/extensions/VaniVideo:ro
+      - ./vanipedia/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - ./vanipedia/extensions/MarkTerms:/var/www/html/w/extensions/MarkTerms:ro
+      - ./vanipedia/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vanipedia/extensions/VaniUrlRouter:/var/www/html/w/extensions/VaniUrlRouter:ro
+      - ./vanipedia/extensions/VanibotExec:/var/www/html/w/extensions/VanibotExec:ro
+      - ./vanipedia/extensions/PrabhupadaChat:/var/www/html/w/extensions/PrabhupadaChat:ro
+      - ./vanipedia/extensions/HeaderTabs:/var/www/html/w/extensions/HeaderTabs:ro
+      - ./vanipedia/extensions/Variables:/var/www/html/w/extensions/Variables:ro
+      - ./vanipedia/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vanipedia/extensions/RandomImage:/var/www/html/w/extensions/RandomImage:ro
+      - ./vanipedia/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vanipedia/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vanipedia/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vanipedia/extensions/Renameuser:/var/www/html/w/extensions/Renameuser:ro
+      # --- Vanipedia-specific extensions ---
+      - ./vanipedia/extensions/VideoShorts:/var/www/html/w/extensions/VideoShorts:ro
+      - ./vanipedia/extensions/UserAdmin:/var/www/html/w/extensions/UserAdmin:ro
+      - ./vanipedia/extensions/LangAdmin:/var/www/html/w/extensions/LangAdmin:ro
+      - ./vanipedia/extensions/UserSeva:/var/www/html/w/extensions/UserSeva:ro
+      - ./vanipedia/extensions/RevisionManager:/var/www/html/w/extensions/RevisionManager:ro
+      - ./vanipedia/extensions/SearchAdmin:/var/www/html/w/extensions/SearchAdmin:ro
+      - ./vanipedia/extensions/QuotesAdmin:/var/www/html/w/extensions/QuotesAdmin:ro
+      - ./vanipedia/extensions/CategoryAdmin:/var/www/html/w/extensions/CategoryAdmin:ro
+      - ./vanipedia/extensions/TranPropAdmin:/var/www/html/w/extensions/TranPropAdmin:ro
+      - ./vanipedia/extensions/TestYada:/var/www/html/w/extensions/TestYada:ro
+      - ./vanipedia/extensions/NDropStatistics:/var/www/html/w/extensions/NDropStatistics:ro
+      - ./vanipedia/extensions/NDropTranslation:/var/www/html/w/extensions/NDropTranslation:ro
+      - ./vanipedia/extensions/CPStatistics:/var/www/html/w/extensions/CPStatistics:ro
+      - ./vanipedia/extensions/VaniNavigation:/var/www/html/w/extensions/VaniNavigation:ro
+      - ./vanipedia/extensions/ImportArticles:/var/www/html/w/extensions/ImportArticles:ro
+      - ./vanipedia/extensions/NoTitle:/var/www/html/w/extensions/NoTitle:ro
+      - ./vanipedia/extensions/Tabs:/var/www/html/w/extensions/Tabs:ro
+      - ./vanipedia/extensions/ExternalData:/var/www/html/w/extensions/ExternalData:ro
+      - ./vanipedia/extensions/GoogleSiteSearch:/var/www/html/w/extensions/GoogleSiteSearch:ro
+      - ./vanipedia/extensions/GoogleDocs4MW:/var/www/html/w/extensions/GoogleDocs4MW:ro
+      - ./vanipedia/extensions/IframePage:/var/www/html/w/extensions/IframePage:ro
+      - ./vanipedia/extensions/FactBox:/var/www/html/w/extensions/FactBox:ro
+      - ./vanipedia/extensions/VanipediaApi:/var/www/html/w/extensions/VanipediaApi:ro
+      # Images from vani-mirror (read-write for thumbnails)
+      - /data/vani-mirror/www/vanipedia/w/images:/var/www/html/w/images
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vanipedia:
+    image: nginx:alpine
+    container_name: nginx-vanipedia
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8084:80"
+    volumes:
+      - ./nginx/vanipedia.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./vanipedia/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      # Extension static assets (CSS/JS loaded by HeadScript and SpecialPages)
+      - ./vanipedia/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vanipedia/extensions/NDropTranslation:/var/www/html/w/extensions/NDropTranslation:ro
+      - ./vanipedia/extensions/VanibotExec:/var/www/html/w/extensions/VanibotExec:ro
+      - ./vanipedia/extensions/VaniNavigation:/var/www/html/w/extensions/VaniNavigation:ro
+      - ./vanipedia/extensions/VideoShorts:/var/www/html/w/extensions/VideoShorts:ro
+      - ./vanipedia/extensions/UserAdmin:/var/www/html/w/extensions/UserAdmin:ro
+      - ./vanipedia/extensions/LangAdmin:/var/www/html/w/extensions/LangAdmin:ro
+      - ./vanipedia/extensions/UserSeva:/var/www/html/w/extensions/UserSeva:ro
+      - ./vanipedia/extensions/RevisionManager:/var/www/html/w/extensions/RevisionManager:ro
+      - ./vanipedia/extensions/SearchAdmin:/var/www/html/w/extensions/SearchAdmin:ro
+      - ./vanipedia/extensions/QuotesAdmin:/var/www/html/w/extensions/QuotesAdmin:ro
+      - ./vanipedia/extensions/CategoryAdmin:/var/www/html/w/extensions/CategoryAdmin:ro
+      - ./vanipedia/extensions/TranPropAdmin:/var/www/html/w/extensions/TranPropAdmin:ro
+      - ./vanipedia/extensions/TestYada:/var/www/html/w/extensions/TestYada:ro
+      - ./vanipedia/extensions/NDropStatistics:/var/www/html/w/extensions/NDropStatistics:ro
+      - ./vanipedia/extensions/CPStatistics:/var/www/html/w/extensions/CPStatistics:ro
+      - ./vanipedia/extensions/ImportArticles:/var/www/html/w/extensions/ImportArticles:ro
+      - ./vanipedia/extensions/IframePage:/var/www/html/w/extensions/IframePage:ro
+      - ./vanipedia/extensions/PrabhupadaChat:/var/www/html/w/extensions/PrabhupadaChat:ro
+      - ./vanipedia/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - /data/vani-mirror/www/vanipedia/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vanipedia
+
+  mediawiki-vanimedia:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vanimedia
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANIMEDIA}
+    restart: unless-stopped
+    volumes:
+      - ./vanimedia/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      - ./vanimedia/global:/var/www/html/w/global:ro
+      - ./vanimedia/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - ./vanimedia/menu.dat:/var/www/html/w/menu.dat:ro
+      - ./vanimedia/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
+      - ./vanimedia/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - ./vanimedia/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vanimedia/extensions/HeaderTabs:/var/www/html/w/extensions/HeaderTabs:ro
+      - ./vanimedia/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vanimedia/extensions/RandomImage:/var/www/html/w/extensions/RandomImage:ro
+      - ./vanimedia/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vanimedia/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vanimedia/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vanimedia/extensions/Renameuser:/var/www/html/w/extensions/Renameuser:ro
+      - /data/vani-mirror/www/vanimedia/w/images:/var/www/html/w/images
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vanimedia:
+    image: nginx:alpine
+    container_name: nginx-vanimedia
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8086:80"
+    volumes:
+      - ./nginx/vanimedia.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./vanimedia/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - ./vanimedia/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - /data/vani-mirror/www/vanimedia/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vanimedia
+
+  mediawiki-vaniquotes:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vaniquotes
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANIQUOTES}
+    restart: unless-stopped
+    volumes:
+      - ./vaniquotes/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      - ./vaniquotes/global:/var/www/html/w/global:ro
+      - ./vaniquotes/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - ./vaniquotes/menu.dat:/var/www/html/w/menu.dat:ro
+      # Reused extensions
+      - ./vaniquotes/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
+      - ./vaniquotes/extensions/VaniVideo:/var/www/html/w/extensions/VaniVideo:ro
+      - ./vaniquotes/extensions/MarkTerms:/var/www/html/w/extensions/MarkTerms:ro
+      - ./vaniquotes/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - ./vaniquotes/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vaniquotes/extensions/VaniUrlRouter:/var/www/html/w/extensions/VaniUrlRouter:ro
+      - ./vaniquotes/extensions/HeaderTabs:/var/www/html/w/extensions/HeaderTabs:ro
+      - ./vaniquotes/extensions/Variables:/var/www/html/w/extensions/Variables:ro
+      - ./vaniquotes/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vaniquotes/extensions/RandomImage:/var/www/html/w/extensions/RandomImage:ro
+      - ./vaniquotes/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vaniquotes/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vaniquotes/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vaniquotes/extensions/Renameuser:/var/www/html/w/extensions/Renameuser:ro
+      - ./vaniquotes/extensions/NoTitle:/var/www/html/w/extensions/NoTitle:ro
+      - ./vaniquotes/extensions/ExternalData:/var/www/html/w/extensions/ExternalData:ro
+      # Vaniquotes-specific extensions
+      - ./vaniquotes/extensions/MenuSidebar:/var/www/html/w/extensions/MenuSidebar:ro
+      - ./vaniquotes/extensions/VaniSubcat:/var/www/html/w/extensions/VaniSubcat:ro
+      - ./vaniquotes/extensions/VaniFactbox:/var/www/html/w/extensions/VaniFactbox:ro
+      - ./vaniquotes/extensions/VaniquotesApi:/var/www/html/w/extensions/VaniquotesApi:ro
+      - ./vaniquotes/extensions/CategoryMove:/var/www/html/w/extensions/CategoryMove:ro
+      - ./vaniquotes/extensions/QuoteStats:/var/www/html/w/extensions/QuoteStats:ro
+      - ./vaniquotes/extensions/AI_CategoryWrapper:/var/www/html/w/extensions/AI_CategoryWrapper:ro
+      - ./vaniquotes/extensions/AI_PageLinker:/var/www/html/w/extensions/AI_PageLinker:ro
+      - /data/vani-mirror/www/vaniquotes/w/images:/var/www/html/w/images
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vaniquotes:
+    image: nginx:alpine
+    container_name: nginx-vaniquotes
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8083:80"
+    volumes:
+      - ./nginx/vaniquotes.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./vaniquotes/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - ./vaniquotes/extensions/AI_CategoryWrapper:/var/www/html/w/extensions/AI_CategoryWrapper:ro
+      - ./vaniquotes/extensions/AI_PageLinker:/var/www/html/w/extensions/AI_PageLinker:ro
+      - ./vaniquotes/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vaniquotes/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - /data/vani-mirror/www/vaniquotes/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vaniquotes
+
+  mediawiki-vanitest:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vanitest
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANITEST}
+    restart: unless-stopped
+    volumes:
+      - ./vanitest/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      - ./vanitest/global:/var/www/html/w/global:ro
+      - ./vanitest/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - ./vanitest/menu.dat:/var/www/html/w/menu.dat:ro
+      - ./vanitest/env/vanitest.env.php:/var/www/vanitest/vanitest.env.php:ro
+      # Extensions (same as vanipedia)
+      - ./vanitest/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
+      - ./vanitest/extensions/VaniVideo:/var/www/html/w/extensions/VaniVideo:ro
+      - ./vanitest/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - ./vanitest/extensions/MarkTerms:/var/www/html/w/extensions/MarkTerms:ro
+      - ./vanitest/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vanitest/extensions/VaniUrlRouter:/var/www/html/w/extensions/VaniUrlRouter:ro
+      - ./vanitest/extensions/VanibotExec:/var/www/html/w/extensions/VanibotExec:ro
+      - ./vanitest/extensions/PrabhupadaChat:/var/www/html/w/extensions/PrabhupadaChat:ro
+      - ./vanitest/extensions/HeaderTabs:/var/www/html/w/extensions/HeaderTabs:ro
+      - ./vanitest/extensions/Variables:/var/www/html/w/extensions/Variables:ro
+      - ./vanitest/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vanitest/extensions/RandomImage:/var/www/html/w/extensions/RandomImage:ro
+      - ./vanitest/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vanitest/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vanitest/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vanitest/extensions/Renameuser:/var/www/html/w/extensions/Renameuser:ro
+      - ./vanitest/extensions/VideoShorts:/var/www/html/w/extensions/VideoShorts:ro
+      - ./vanitest/extensions/UserAdmin:/var/www/html/w/extensions/UserAdmin:ro
+      - ./vanitest/extensions/LangAdmin:/var/www/html/w/extensions/LangAdmin:ro
+      - ./vanitest/extensions/UserSeva:/var/www/html/w/extensions/UserSeva:ro
+      - ./vanitest/extensions/RevisionManager:/var/www/html/w/extensions/RevisionManager:ro
+      - ./vanitest/extensions/SearchAdmin:/var/www/html/w/extensions/SearchAdmin:ro
+      - ./vanitest/extensions/QuotesAdmin:/var/www/html/w/extensions/QuotesAdmin:ro
+      - ./vanitest/extensions/CategoryAdmin:/var/www/html/w/extensions/CategoryAdmin:ro
+      - ./vanitest/extensions/TranPropAdmin:/var/www/html/w/extensions/TranPropAdmin:ro
+      - ./vanitest/extensions/TestYada:/var/www/html/w/extensions/TestYada:ro
+      - ./vanitest/extensions/NDropStatistics:/var/www/html/w/extensions/NDropStatistics:ro
+      - ./vanitest/extensions/NDropTranslation:/var/www/html/w/extensions/NDropTranslation:ro
+      - ./vanitest/extensions/CPStatistics:/var/www/html/w/extensions/CPStatistics:ro
+      - ./vanitest/extensions/VaniNavigation:/var/www/html/w/extensions/VaniNavigation:ro
+      - ./vanitest/extensions/ImportArticles:/var/www/html/w/extensions/ImportArticles:ro
+      - ./vanitest/extensions/NoTitle:/var/www/html/w/extensions/NoTitle:ro
+      - ./vanitest/extensions/Tabs:/var/www/html/w/extensions/Tabs:ro
+      - ./vanitest/extensions/ExternalData:/var/www/html/w/extensions/ExternalData:ro
+      - ./vanitest/extensions/GoogleSiteSearch:/var/www/html/w/extensions/GoogleSiteSearch:ro
+      - ./vanitest/extensions/GoogleDocs4MW:/var/www/html/w/extensions/GoogleDocs4MW:ro
+      - ./vanitest/extensions/IframePage:/var/www/html/w/extensions/IframePage:ro
+      - ./vanitest/extensions/FactBox:/var/www/html/w/extensions/FactBox:ro
+      - ./vanitest/extensions/VanipediaApi:/var/www/html/w/extensions/VanipediaApi:ro
+      - /data/vani-mirror/www/vanitest/w/images:/var/www/html/w/images
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vanitest:
+    image: nginx:alpine
+    container_name: nginx-vanitest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8085:80"
+    volumes:
+      - ./nginx/vanitest.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./vanitest/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      - ./vanitest/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
+      - ./vanitest/extensions/NDropTranslation:/var/www/html/w/extensions/NDropTranslation:ro
+      - ./vanitest/extensions/VanibotExec:/var/www/html/w/extensions/VanibotExec:ro
+      - ./vanitest/extensions/VaniNavigation:/var/www/html/w/extensions/VaniNavigation:ro
+      - ./vanitest/extensions/VideoShorts:/var/www/html/w/extensions/VideoShorts:ro
+      - ./vanitest/extensions/UserAdmin:/var/www/html/w/extensions/UserAdmin:ro
+      - ./vanitest/extensions/LangAdmin:/var/www/html/w/extensions/LangAdmin:ro
+      - ./vanitest/extensions/UserSeva:/var/www/html/w/extensions/UserSeva:ro
+      - ./vanitest/extensions/RevisionManager:/var/www/html/w/extensions/RevisionManager:ro
+      - ./vanitest/extensions/SearchAdmin:/var/www/html/w/extensions/SearchAdmin:ro
+      - ./vanitest/extensions/QuotesAdmin:/var/www/html/w/extensions/QuotesAdmin:ro
+      - ./vanitest/extensions/CategoryAdmin:/var/www/html/w/extensions/CategoryAdmin:ro
+      - ./vanitest/extensions/TranPropAdmin:/var/www/html/w/extensions/TranPropAdmin:ro
+      - ./vanitest/extensions/TestYada:/var/www/html/w/extensions/TestYada:ro
+      - ./vanitest/extensions/NDropStatistics:/var/www/html/w/extensions/NDropStatistics:ro
+      - ./vanitest/extensions/CPStatistics:/var/www/html/w/extensions/CPStatistics:ro
+      - ./vanitest/extensions/ImportArticles:/var/www/html/w/extensions/ImportArticles:ro
+      - ./vanitest/extensions/IframePage:/var/www/html/w/extensions/IframePage:ro
+      - ./vanitest/extensions/PrabhupadaChat:/var/www/html/w/extensions/PrabhupadaChat:ro
+      - ./vanitest/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
+      - /data/vani-mirror/www/vanitest/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vanitest
+
+  mediawiki-vanibooks:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vanibooks
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANIBOOKS}
+    restart: unless-stopped
+    volumes:
+      - ./vanibooks/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      - ./vanibooks/global:/var/www/html/w/global:ro
+      # Non-bundled extensions
+      - ./vanibooks/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vanibooks/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vanibooks/extensions/RandomImage:/var/www/html/w/extensions/RandomImage:ro
+      - ./vanibooks/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vanibooks/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vanibooks/extensions/IframePage:/var/www/html/w/extensions/IframePage:ro
+      # Images
+      - /data/vani-mirror/www/vanibooks/w/images:/var/www/html/w/images
+      # Shared uploads from vanimedia
+      - /data/vani-mirror/www/vanimedia/w/images:/var/www/html/w/shared-images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vanibooks:
+    image: nginx:alpine
+    container_name: nginx-vanibooks
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8087:80"
+    volumes:
+      - ./nginx/vanibooks.conf:/etc/nginx/conf.d/default.conf:ro
+      - /data/vani-mirror/www/vanibooks/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vanibooks
+
+  mediawiki-vanictionary:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vanictionary
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANICTIONARY}
+    restart: unless-stopped
+    volumes:
+      - ./vanictionary/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      - ./vanictionary/global:/var/www/html/w/global:ro
+      # Non-bundled extensions
+      - ./vanictionary/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vanictionary/extensions/Loops:/var/www/html/w/extensions/Loops:ro
+      - ./vanictionary/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vanictionary/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      # Images
+      - /data/vani-mirror/www/vanictionary/w/images:/var/www/html/w/images
+      # Shared uploads from vanimedia
+      - /data/vani-mirror/www/vanimedia/w/images:/var/www/html/w/shared-images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vanictionary:
+    image: nginx:alpine
+    container_name: nginx-vanictionary
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8088:80"
+    volumes:
+      - ./nginx/vanictionary.conf:/etc/nginx/conf.d/default.conf:ro
+      - /data/vani-mirror/www/vanictionary/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vanictionary
+
+  mediawiki-vaniversity:
+    build:
+      context: ./mediawiki
+      dockerfile: Dockerfile
+    container_name: mediawiki-vaniversity
+    env_file: .env
+    environment:
+      - MW_SECRET_KEY=${MW_SECRET_KEY_VANIVERSITY}
+    restart: unless-stopped
+    volumes:
+      - ./vaniversity/LocalSettings.php:/var/www/html/w/LocalSettings.php:ro
+      - ./vaniversity/global:/var/www/html/w/global:ro
+      # Non-bundled extensions
+      - ./vaniversity/extensions/CharInsert:/var/www/html/w/extensions/CharInsert:ro
+      - ./vaniversity/extensions/RandomSelection:/var/www/html/w/extensions/RandomSelection:ro
+      - ./vaniversity/extensions/EmbedVideo:/var/www/html/w/extensions/EmbedVideo:ro
+      - ./vaniversity/extensions/IframePage:/var/www/html/w/extensions/IframePage:ro
+      # Images
+      - /data/vani-mirror/www/vaniversity/w/images:/var/www/html/w/images
+      # Shared uploads from vanimedia
+      - /data/vani-mirror/www/vanimedia/w/images:/var/www/html/w/shared-images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - memcached
+
+  nginx-vaniversity:
+    image: nginx:alpine
+    container_name: nginx-vaniversity
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8089:80"
+    volumes:
+      - ./nginx/vaniversity.conf:/etc/nginx/conf.d/default.conf:ro
+      - /data/vani-mirror/www/vaniversity/w/images:/var/www/html/w/images:ro
+    networks:
+      - shared-net
+    depends_on:
+      - mediawiki-vaniversity
+
+  memcached:
+    image: memcached:alpine
+    container_name: memcached
+    restart: unless-stopped
+    command: memcached -m 128
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elad Stern"
+		]
+	},
+	"myextension": "The name of the extension's entry in Special:SpecialPages",
+	"myextension-desc": "{{desc}}",
+	"myextension-summary": "Description appearing on top of Special:QuoteStats.",
+	"action-myextension": "{{doc-action|myextension}}",
+	"right-myextension": "{{doc-right|myextension}}",
+	"-viewoptsection": "View options section header",
+    "form-fromnum": "From number of quotes",
+    "form-tonum": "To number of quotes"	
+}

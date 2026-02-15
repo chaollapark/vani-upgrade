@@ -1,0 +1,31 @@
+{
+	"name": "VaniAudio",
+	"version": "1.1",
+	"author": "Elad Stern",
+	"url": "https://vanipedia.org",
+	"descriptionmsg": "vaniaudio-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"MessagesDirs": {
+		"VaniAudio": [ "i18n" ]
+	},
+	"AutoloadClasses": {
+		"VaniAudio": "VaniAudio.body.php"
+	},
+	"ExtensionFunctions": [
+		"VaniAudio::initFromGlobals"
+	],
+	"Hooks": {
+		"ParserFirstCallInit": "VaniAudioHooks::onParserFirstCallInit"
+	},
+	"AutoloadNamespaces": {},
+	"HookHandlers": {
+		"VaniAudioHooks": {
+			"class": "VaniAudioHooks"
+		}
+	},
+	"manifest_version": 2
+}
