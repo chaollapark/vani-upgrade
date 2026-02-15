@@ -2,7 +2,9 @@
 
 ## Overview
 
-Upgrading 8 Vani wikis from legacy MediaWiki to **MW 1.43 LTS** running in Docker on Hetzner. Vanisource and Vanipedia are complete. 6 wikis remain.
+8 Vani wikis upgraded from legacy MediaWiki to **MW 1.43 LTS** running in Docker on Hetzner. **All 8 wikis are complete.**
+
+For a full overview of the infrastructure, see [README.md](README.md). For day-to-day operations, see [docs/operations.md](docs/operations.md). For migration history and remaining items, see [docs/migration-summary.md](docs/migration-summary.md). Per-wiki migration reports are in `docs/migration-<wiki>.md`.
 
 ## SSH Access
 
@@ -19,30 +21,6 @@ Upgrading 8 Vani wikis from legacy MediaWiki to **MW 1.43 LTS** running in Docke
 | `/data/vani-mirror/home/global/` | Shared permissions.php |
 | `/data/vani-upgrade/` | Docker upgrade workspace |
 
-## Wiki Inventory
-
-| Wiki | Original MW | Skin | Images | DB Dump | Legacy Extensions | Status |
-|------|------------|------|--------|---------|-------------------|--------|
-| vanisource | 1.40.0 | VaniSkin | 95M | 643M | 5 (fixed) | **DONE** |
-| vaniquotes | ~1.35+ | VaniSkin | 496K | 1.7G | 10 | Pending |
-| vanipedia | ~1.35+ | VaniSkin | 19G | 583M | 46 extensions | **DONE** |
-| vanimedia | ~1.35+ | VaniSkin | 22G | 240M | 5 | Pending |
-| vanitest | ~1.35+ | VaniSkin | 19G | 568M | same as vanipedia | Pending |
-| vanibooks | 1.23.5 | vector | 704K | 9.3M | all legacy | Pending |
-| vanictionary | 1.23.5 | vector | 668K | 7.3M | all legacy | Pending |
-| vaniversity | 1.23.5 | vector | 716K | 7.3M | all legacy | Pending |
-
-### Suggested Upgrade Order
-
-1. ~~**vaniquotes** — VaniSkin wiki, small images, shares many extensions with vanisource~~
-2. ~~**vanipedia** — largest extension set, but mostly modern already~~ **DONE**
-3. **vanitest** — identical to vanipedia, can reuse its config (next: just copy vanipedia config, change DB/port)
-4. **vaniquotes** — VaniSkin wiki, small images, shares many extensions with vanisource
-5. **vanimedia** — large images (22G), but simpler extension set
-6. **vanibooks** — MW 1.23.5 jump, but tiny and uses default vector skin
-7. **vanictionary** — same as vanibooks
-8. **vaniversity** — same as vanibooks
-
 ## Docker Architecture
 
 All wikis share a single Dockerfile (MW 1.43 + PHP 8.2-FPM + SMW 5.x via Composer). Each wiki gets:
@@ -55,9 +33,9 @@ All wikis share a single Dockerfile (MW 1.43 + PHP 8.2-FPM + SMW 5.x via Compose
 
 | Port | Wiki |
 |------|------|
-| 8082 | vanisource (done) |
+| 8082 | vanisource |
 | 8083 | vaniquotes |
-| 8084 | vanipedia (done) |
+| 8084 | vanipedia |
 | 8085 | vanitest |
 | 8086 | vanimedia |
 | 8087 | vanibooks |
@@ -192,17 +170,8 @@ Extensions using `require_once` need an `extension.json` wrapper. Pattern:
 - VanipediaApi — `/data/vani-upgrade/vanipedia/extensions/VanipediaApi/` (extension.json + VanipediaApiSetup.php created)
 - HeadScript — converted to inline `$wgHooks['BeforePageDisplay']` closure in LocalSettings.php
 
-**Still need migration for other wikis:**
-- HeadScript (vanictionary, vaniquotes) — convert to inline hook (same pattern as vanipedia)
-- IframePage (vanibooks) — copy from vanipedia
-- MenuSidebar (vaniquotes)
-- VaniSubcat (vaniquotes)
-- VaniFactbox (vaniquotes)
-- VaniquotesApi (vaniquotes)
-- Mantle (vanibooks, vanictionary, vaniversity)
-- MailChimpForms (vaniversity)
-- Html5mediator (vaniversity)
-- ContributionTracking / DonationInterface (vaniversity)
+**Migrated for vaniquotes:**
+- MenuSidebar, VaniSubcat, VaniFactbox, VaniquotesApi — extension.json wrappers created
 
 ### 5. VaniSkin Fixes (apply to all VaniSkin wikis)
 
@@ -245,18 +214,18 @@ docker exec mediawiki-<wiki> php /var/www/html/w/maintenance/run.php update.php 
 
 ```bash
 # Schema upgrade (MW 1.40→1.43, or 1.23→1.43)
-docker exec mediawiki-<wiki> php /var/www/html/w/maintenance/run.php update.php --quick
+docker exec mediawiki-<wiki> php /var/www/html/w/maintenance/run.php update --quick
 
 # SMW store setup
 docker exec mediawiki-<wiki> php /var/www/html/w/extensions/SemanticMediaWiki/maintenance/setupStore.php
 
 # Rebuild (optional, for thorough cache/index refresh)
-docker exec mediawiki-<wiki> php /var/www/html/w/maintenance/run.php rebuildall.php
+docker exec mediawiki-<wiki> php /var/www/html/w/maintenance/run.php rebuildall
 ```
 
 For wikis jumping from MW 1.23.5, the schema migration is much larger. Expect more table changes but `update --quick` handles it.
 
-### 9. LocalSettings.php Changes Checklist
+### 10. LocalSettings.php Changes Checklist
 
 For every wiki, update these in LocalSettings.php:
 
@@ -273,30 +242,6 @@ For every wiki, update these in LocalSettings.php:
 - [ ] `$wgDBTableOptions = "TYPE=InnoDB"` → `"ENGINE=InnoDB, DEFAULT CHARSET=binary"`
 - [ ] Remove `set_include_path(...)` block, `$wgCommandLineMode` check, `$wgUseTeX`
 - [ ] Set `$wgShowExceptionDetails = true` during testing
-
-### 10. Testing Checklist (run after each wiki upgrade)
-
-```bash
-# Basic health
-curl -s -o /dev/null -w '%{http_code}' http://localhost:<port>/wiki/Main_Page  # expect 200
-curl -s -o /dev/null -w '%{http_code}' -L http://localhost:<port>/wiki/NonExistent  # expect 404 (not 500!)
-curl -s http://localhost:<port>/wiki/Special:Version | grep 'MediaWiki 1.43'  # confirm version
-
-# API
-curl -s 'http://localhost:<port>/w/api.php?action=query&meta=siteinfo&format=json' | python3 -m json.tool | head -5
-
-# Extensions loaded
-curl -s 'http://localhost:<port>/w/api.php?action=query&meta=siteinfo&siprop=extensions&format=json' | python3 -c "import sys,json; exts=json.load(sys.stdin)['query']['extensions']; [print(e['name']) for e in exts]"
-
-# Database page count
-docker exec mariadb-prod mariadb -u admin -p$MW_DB_PASSWORD <dbname> -e "SELECT COUNT(*) FROM <prefix>page"
-
-# PHP-FPM error log
-docker logs mediawiki-<wiki> 2>&1 | tail -20
-
-# SMW status
-curl -s http://localhost:<port>/wiki/Special:SemanticMediaWiki | grep -c 'error\|Error'  # expect 0
-```
 
 ### 11. SSH Tunnel for Browser Testing
 
@@ -329,8 +274,8 @@ Many Yadasampati custom extensions (VideoShorts, NDropTranslation, SearchAdmin, 
 ```php
 <?php
 return [
-  'DB_USER' => '$MW_ENV_DB_USER',
-  'DB_PASS' => '$MW_ENV_DB_PASS',
+  'DB_USER' => getenv('MW_ENV_DB_USER'),
+  'DB_PASS' => getenv('MW_ENV_DB_PASS'),
 ];
 ?>
 ```
@@ -368,40 +313,18 @@ docker exec mediawiki-<wiki> php /var/www/html/w/extensions/SemanticMediaWiki/ma
 
 The Tabs extension (`/extensions/Tabs/includes/Tabs.php`) has PHP 8.2 deprecation warnings about optional parameters before required parameters. These are non-breaking and cosmetic only — the extension still functions correctly.
 
-## Per-Wiki Extension Notes
+## Per-Wiki Details
 
-### vaniquotes (next up)
-- Has MarkTerms, VaniAudio, VaniVideo (already migrated for vanisource — copy them)
-- Has unique legacy extensions: MenuSidebar, VaniSubcat, VaniFactbox, VaniquotesApi, HeadScript — these all need extension.json wrappers
-- Uses SMW — same Composer setup as vanisource
-- Uses Variables, Loops — non-bundled, need to be copied
+For detailed per-wiki migration reports including extension lists, challenges encountered, and configuration specifics, see the individual migration documents:
 
-### vanipedia (DONE)
-- **46 extensions** loaded and working on port 8084
-- 136,464 pages, 255,450 revisions, 1,429 images (19GB bind-mounted)
-- Legacy extensions migrated: IframePage (extension.json), FactBox (extension.json + hooks class), VanipediaApi (extension.json + setup class), HeadScript (inline hook)
-- 6 extensions fixed manifest_version 1→2: VaniNavigation, ImportArticles, TranPropAdmin, NDropTranslation, GoogleDocs4MW, GoogleSiteSearch
-- GoogleSiteSearch config format fixed for manifest_version 2
-- vanipedia.env.php mounted for 12 custom extensions with db_connect files
-- All db_connect files updated: `localhost` → `mariadb-prod`
-- 20 extensions mounted in nginx for static asset serving
-- **Remaining:** vp_search/vp_translate databases not migrated, VaniSearch static assets incomplete, GA commented out
-- Config at `/data/vani-upgrade/vanipedia/`
-
-### vanitest
-- Mirror of vanipedia — duplicate vanipedia's config, change DB name/prefix/port
-
-### vanimedia
-- Large images (22G) — bind mount, don't copy
-- Legacy: MobileDetect, VaniAudio, googleAnalytics, ReplaceText (old require_once version), InputBox
-- Simpler extension set than vanipedia
-
-### vanibooks / vanictionary / vaniversity
-- MW 1.23.5 → 1.43 is a huge jump (20 version increments)
-- Use default vector skin (no VaniSkin fixes needed)
-- All extensions are legacy `require_once` — many are now bundled in MW 1.43
-- Small wikis, small databases — upgrade should be fast once extensions are sorted
-- Some extensions (Mantle, MailChimpForms, Html5mediator, DonationInterface) may be obsolete
+- [docs/migration-vanisource.md](docs/migration-vanisource.md)
+- [docs/migration-vaniquotes.md](docs/migration-vaniquotes.md)
+- [docs/migration-vanipedia.md](docs/migration-vanipedia.md)
+- [docs/migration-vanitest.md](docs/migration-vanitest.md)
+- [docs/migration-vanimedia.md](docs/migration-vanimedia.md)
+- [docs/migration-vanibooks.md](docs/migration-vanibooks.md)
+- [docs/migration-vanictionary.md](docs/migration-vanictionary.md)
+- [docs/migration-vaniversity.md](docs/migration-vaniversity.md)
 
 ## Disk Space
 
