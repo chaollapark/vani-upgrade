@@ -1,0 +1,502 @@
+/* VP */
+
+.row {
+  max-width: 100em !important;
+}
+
+body {
+ line-height: revert !important;
+}
+
+div:not(.title-name) {
+ line-height: revert !important;
+}
+
+table tbody tr td, table tr td {
+  line-height: revert !important;
+}
+
+select {
+  -webkit-appearance: revert !important;
+  background-image: revert;
+  margin: revert;
+  padding: revert;
+  width: revert;
+  height: revert;
+}
+
+button {
+  margin: revert;
+  padding: revert;
+  background-color: revert;
+  color: revert;
+}
+
+label {
+  cursor: default;
+}
+
+label.forcheckbox {
+  cursor: pointer;
+}
+
+table {
+  width: revert;
+  margin-bottom: revert;
+}
+
+th, td {
+  cursor: default;
+}
+
+.div_main input[type="text"],[type="number"] {
+  display: revert !important;
+  margin: revert !important;
+  padding: revert !important;
+  width: revert !important;
+  height: revert !important;
+  cursor: default;
+}
+
+input[type="checkbox"] {
+  margin: revert;
+  padding: revert;
+}
+
+/* VP */
+
+/* Chrome */
+input[type="text"] {
+  outline: none;
+}
+
+input[type='checkbox']:checked {
+  -webkit-filter: grayscale(100%); /* avoid the blue background */
+}
+
+/* Chrome */
+
+
+.div_main a {
+  text-decoration: none;
+/*  margin-right: 15px;*/
+}
+.div_main a:hover {text-decoration: underline}
+
+h1,h2 {margin: 0}
+
+th.sortable {
+  cursor: pointer;
+}
+
+td.limit_250 {
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+td.limit_500 {
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+td.limit_750 {
+  max-width: 750px;
+  word-wrap: break-word;
+}
+
+td.td_num {
+  text-align: right;
+  vertical-align: top;
+}
+
+td.td_center {
+  text-align: center;
+}
+
+i.sort_icon {
+  float: right;
+  margin-left: 5px;
+}
+
+i.hidden {
+  display: none;
+}
+
+button.btn_toggle {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+button.btn_toggle:hover, button.btn_toggle:focus {
+  background-color: inherit; /* VP */
+  color: inherit; /* VP */
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.div_main {
+  display: inline-block;
+  background-color: lavender;
+  max-width: 1250px; 
+  font-family: Tahoma;
+  /* VP */
+  padding: 0px 15px 15px 15px;
+}
+
+.div_main table {
+  border-collapse: collapse;
+}
+
+.div_main tr:nth-child(even){background-color: #e4e4f2;}
+.div_main tr:nth-child(odd){background-color: #d3d3e2;}
+
+.div_main td, .div_main th {
+  border: 1px solid white;
+  padding: 5px;
+  vertical-align: top;
+}
+
+#div_result_text tr:nth-child(4n+2){background-color: #e4e4f2;}
+#div_result_text tr:nth-child(4n+3){background-color: #e4e4f2;}
+#div_result_text tr:nth-child(4n+4){background-color: #d3d3e2;}
+#div_result_text tr:nth-child(4n+5){background-color: #d3d3e2;}
+
+.div_head {
+  clear: both;
+  background-color: lightgray;
+}
+
+.div_side {
+  float: left;
+  background-color: lightsteelblue;
+}
+
+.div_middle {
+  float: left;
+  background-color: white;
+}
+
+.div_tab {
+  display: inline-block;
+}
+
+.div_navig {
+  padding: 5px;
+  background-color: #adb2bd;
+  border-radius: 25px;
+}
+
+.div_navig.hidden {
+  display: none;
+}
+
+.search_message {
+  color: red;
+}
+
+.search_message.hidden {
+  display: none;
+}
+
+.nav_buttons button {
+  margin: 0px 3px 0px 0px;
+  padding: 0px 2px 0px 2px;
+  background-color: #6e7377;
+  color: white;
+  /*border: 1px solid grey;*/
+  border-radius: 10px;
+  cursor: pointer;
+  width: 20px;
+}
+
+.sel_search {
+  margin-left: 4px;
+}
+
+input[type="number"].spin_search {
+  margin-left: 4px !important;
+  width: 50px !important;
+}
+
+input[type="number"].spin_fdbk {
+  width: 50px !important;
+}
+
+.btn_search {
+  margin-right: 4px;
+  color: white;
+  background-color: #2d9393;
+  font-size: 16px;
+  font-family: Tahoma;
+  cursor: pointer;
+  border: 2px solid darkgrey;
+  border-radius: 4px;
+  outline: none;
+}
+
+.btn_search:hover, .btn_search:focus {
+  background-color: #2d9393;
+  border: 2px solid grey;
+}
+
+.content_row {
+  margin-bottom: 5px;
+}
+
+.content_row.hidden {
+  display: none;
+}
+
+.content_unit {
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.content_unit.hidden {
+  display: none;
+}
+
+.tabs_container {
+  overflow: hidden;
+  background-color: #e1e1e1;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+
+.tab_button {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 12px;
+  transition: .3s;
+/*    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: bold;*/
+  background-color: #e1e1e1;
+  color: #3a3a57;
+  font-size: 16px;
+}
+
+.tab_button.active {
+  background-color: #a2a2a2 ;
+  color: #3a3a57 !important;
+}
+
+.tab_button:hover {
+  background-color: #c3c3c3;
+  color: #3a3a57 !important;
+}
+
+.sheet_content {
+  clear: both;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  color: #333333;
+}
+
+.sheet_content.subtab {
+  padding: 0;
+  border: none;
+}
+
+.sheet_content.active {
+  display: block;
+  font-size: 15px;
+}
+
+.link_bar {
+  margin: 10px 0px 10px 0px;
+}
+
+/* vanifilt */
+.vn_filt {
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #ccc;
+  width: 630px;
+  height: 250px;
+}
+
+.vn_table_div {
+  overflow-y: scroll;
+  height: 250px;
+  display: inline-block;
+}
+
+.filt_table button {
+  margin: 0;
+  padding: 2px 3px 0;
+  background-color: #d3d3d3;
+  color: #000;
+  border: 1px solid grey;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.selrow td {
+  background-color: #e3a692 !important;
+}
+
+/* help search & feedback */
+.modal_wrapper {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 25000;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modal_wrapper.hidden {
+  display: none;
+}
+
+.modal_content {
+  background-color: white;
+  position: relative;
+  padding: 0 12px 12px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: middle; /* todo: does not work, why not? */
+  margin-top: 12px; /* ... just because vertical-align does not work ... */
+  text-align: left;
+}
+
+.modal_close {
+  background-color: #555;
+  color: white;
+  padding: 2px 5px;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.help_text {
+  overflow-y: auto;
+  height: 400px;
+}
+
+/* result table */
+span.mark {
+  background-color: #87ceeb;
+}
+
+table.search_result th {
+  background-color: #6a98b3;
+  color: #fff;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+/* word match */
+.word_match {
+  position: absolute;
+  z-index: 500; /* should be less than 600, the z-index of the menu */
+  display: inline-block;
+  background: #fff;
+  padding: 3px;
+  border: solid 1px #ccc;
+}
+
+.word_match.hidden {
+  display: none;
+}
+
+#div_fdbk_table {
+  margin-bottom: 5px;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+#div_fdbk_text {
+  width: 740px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid grey; 
+  border-radius: 5px;
+}
+
+#div_fdbk_mesg {
+  color: red;
+  margin-bottom: 5px;
+}
+
+#inp_fdbk_text {
+  display: inline-block;
+  margin-top: 0px;
+  height: 250px;
+  width: 500px;
+  max-height: 250px;
+  max-width: 500px;
+}
+
+.fdbk table {
+  margin-bottom: 0px;
+}
+
+.fdbk thead, .fdbk tbody {
+  display: block;
+}
+
+.fdbk tbody {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.fdbk th, .fdbk td {
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+.fdbk th {
+  font-weight: bold;
+  background-color: #e1dddd;
+}
+
+.fdbk_form_row {
+  margin-bottom: 5px;
+}
+
+.fdbk_text_input {
+  color: blue;
+}
+
+input[type="text"].fdbk_text_input,[type="number"].fdbk_text_input {
+  color: blue;
+}
+
+.number_cel {
+  text-align: right;
+}
+
+.hitdiv {
+  background-color: #d3d3e2;
+  padding: 3px;
+  margin-bottom: 3px;
+}
+
+.harcdiv {
+  display: inline-block;
+  vertical-align: top;
+  overflow-y: auto;
+}
+
+#div_result_syno {
+  max-width: 975px;
+}
+
+#lnk_help_search {
+  margin-right: 15px;
+}

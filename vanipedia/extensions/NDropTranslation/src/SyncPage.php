@@ -1,11 +1,14 @@
 <?php
 
-$config = require '/var/www/vanipedia/vanipedia.env.php';
+$configFile = is_readable("/var/www/vanitest/vanitest.env.php")
+  ? "/var/www/vanitest/vanitest.env.php"
+  : "/var/www/vanipedia/vanipedia.env.php";
+$config = require $configFile;
 $mysqli;
 dbConnect();
 
-$wgHooks['ArticleDeleteComplete'][] = 'onArticleDeleteComplete';
-$wgHooks['ArticleUndelete'][] = 'onArticleUndelete';
+$wgHooks["ArticleDeleteComplete"][] = "onArticleDeleteComplete";
+$wgHooks["ArticleUndelete"][] = "onArticleUndelete";
 
 function onArticleDeleteComplete ($article, $user, $reason, $page_id) {
   global $mysqli;
@@ -24,13 +27,13 @@ function onArticleUndelete ($title, $create, $comment, $page_id) {
 function dbConnect () {
   global $mysqli, $config;
 
-  $host = "localhost";
-  $user = $config['DB_USER'];
-  $password = $config['DB_PASS'];
+  $host = "mariadb-prod";
+  $user = $config["DB_USER"];
+  $password = $config["DB_PASS"];
   $database = "vp_translate";
   $mysqli = new mysqli($host,$user,$password,$database);
   if ($mysqli->connect_error) {
-    die('Connect Error (' . $mysqli->connect_errno . ') '
+    die("Connect Error (" . $mysqli->connect_errno . ") "
       . $mysqli->connect_error);
   }
 }

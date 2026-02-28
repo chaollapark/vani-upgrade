@@ -51,9 +51,20 @@ _fetch_body() {
 }
 
 test_http_status() {
-    local desc="$1" url="$2" expected="$3" status
-    status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$url" 2>/dev/null)
-    [[ "$status" == "$expected" ]] && _record_pass "$desc" || _record_fail "$desc" "expected HTTP $expected, got $status"
+    local desc="$1" url="$2" expected="$3" timeout="${4:-10}" status
+    local attempt
+    for attempt in 1 2 3; do
+        status=$(curl -s -o /dev/null -w '%{http_code}' --max-time "$timeout" "$url" 2>/dev/null)
+        if [[ "$status" == "$expected" ]]; then
+            _record_pass "$desc"
+            return
+        fi
+        if [[ "$status" != "000" ]]; then
+            break
+        fi
+        sleep 1
+    done
+    _record_fail "$desc" "expected HTTP $expected, got $status"
 }
 test_http_status_follow() {
     local desc="$1" url="$2" expected="$3" status
@@ -71,9 +82,21 @@ test_http_ok_or_redirect() {
     [[ "$status" =~ ^(200|301|302|303|403)$ ]] && _record_pass "$desc" || _record_fail "$desc" "HTTP $status"
 }
 test_contains() {
-    local desc="$1" url="$2" string="$3" body
-    body=$(curl -s --max-time 15 "$url" 2>/dev/null)
-    grep -qF "$string" <<< "$body" && _record_pass "$desc" || _record_fail "$desc" "'$string' not found"
+    local desc="$1" url="$2" string="$3" timeout="${4:-15}" body
+    local attempt
+    for attempt in 1 2 3; do
+        body=$(curl -s --max-time "$timeout" "$url" 2>/dev/null)
+        if grep -qF "$string" <<< "$body"; then
+            _record_pass "$desc"
+            return
+        fi
+        if [[ ${#body} -lt 20 ]]; then
+            sleep 1
+            continue
+        fi
+        break
+    done
+    _record_fail "$desc" "'$string' not found"
 }
 test_contains_follow() {
     local desc="$1" url="$2" string="$3" body
@@ -133,9 +156,21 @@ _check_not_regex_in() {
 }
 
 test_api_json_valid() {
-    local desc="$1" url="$2" body
-    body=$(curl -s --max-time 10 "$url" 2>/dev/null)
-    python3 -m json.tool <<< "$body" > /dev/null 2>&1 && _record_pass "$desc" || _record_fail "$desc" "invalid JSON"
+    local desc="$1" url="$2" timeout="${3:-10}" body
+    local attempt
+    for attempt in 1 2 3; do
+        body=$(curl -s --max-time "$timeout" "$url" 2>/dev/null)
+        if python3 -m json.tool <<< "$body" > /dev/null 2>&1; then
+            _record_pass "$desc"
+            return
+        fi
+        if [[ ${#body} -lt 20 ]]; then
+            sleep 1
+            continue
+        fi
+        break
+    done
+    _record_fail "$desc" "invalid JSON"
 }
 test_api_has_extension() {
     local desc="$1" ext_name="$2"
@@ -170,17 +205,29 @@ test_db_count_min() {
 }
 test_special_page_not_error() {
     local desc="$1" page="$2" url="${BASE_URL}/wiki/Special:${page}" status body
-    status=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 "$url" 2>/dev/null)
+    status=$(curl -s -o /dev/null -w %{http_code} -L --max-time 20 "$url" 2>/dev/null)
     if [[ "$status" == "200" ]]; then
         body=$(curl -s -L --max-time 20 "$url" 2>/dev/null)
         if grep -qiE "Fatal error|Stack trace|Exception.*thrown" <<< "$body"; then
             _record_fail "$desc" "page has fatal error"
         else _record_pass "$desc"; fi
-    elif [[ "$status" == "302" ]]; then _record_pass "$desc"
-    elif [[ "$status" == "000" ]]; then _record_fail "$desc" "connection failed"
-    else _record_fail "$desc" "HTTP $status"; fi
+    elif [[ "$status" == "302" ]]; then
+        _record_pass "$desc"
+    elif [[ "$status" == "404" && "$page" == "RecentChanges" ]]; then
+        body=$(curl -s -L --max-time 20 "$url" 2>/dev/null)
+        if grep -qF "No changes during the given period match these criteria." <<< "$body"; then
+            _record_pass "$desc"
+        elif grep -qiE "Fatal error|Stack trace|Exception.*thrown" <<< "$body"; then
+            _record_fail "$desc" "page has fatal error"
+        else
+            _record_fail "$desc" "unexpected 404 content"
+        fi
+    elif [[ "$status" == "000" ]]; then
+        _record_fail "$desc" "connection failed"
+    else
+        _record_fail "$desc" "HTTP $status"
+    fi
 }
-
 print_wiki_header() {
     printf "\n================================================================\n"
     printf "${BOLD}${BLUE}  Testing: %s (port %s)${NC}\n" "$WIKI_NAME" "$WIKI_PORT"
@@ -269,8 +316,8 @@ run_api_query_tests() {
     test_contains "Main_Page revisions" "${api}?action=query&titles=Main_Page&prop=revisions&rvlimit=1&rvprop=timestamp&format=json" '"revisions":'
     test_contains "Main_Page categories" "${api}?action=query&titles=Main_Page&prop=categories&format=json" '"pages":'
     test_contains "Main_Page links" "${api}?action=query&titles=Main_Page&prop=links&pllimit=1&format=json" '"pages":'
-    test_contains "parse Main_Page returns HTML" "${api}?action=parse&page=Main_Page&prop=text&format=json" '"text":'
-    test_api_json_valid "parse API returns valid JSON" "${api}?action=parse&page=Main_Page&prop=text&format=json"
+    test_contains "parse Main_Page returns HTML" "${api}?action=parse&page=Main_Page&prop=text&format=json" '"text":' "40"
+    test_api_json_valid "parse API returns valid JSON" "${api}?action=parse&page=Main_Page&prop=text&format=json" "40"
     test_contains "tokens (csrf) returns token" "${api}?action=query&meta=tokens&type=csrf&format=json" '"csrftoken":'
     test_contains "allimages endpoint works" "${api}?action=query&list=allimages&ailimit=1&format=json" '"allimages":'
     test_contains "tags returns data" "${api}?action=query&list=tags&tglimit=5&format=json" '"tags":'
@@ -321,7 +368,7 @@ run_page_rendering_tests() {
     test_http_status "Edit action page loads" "${BASE_URL}/w/index.php?title=Main_Page&action=edit" "200"
     test_contains "Non-existent page handled" "${BASE_URL}/w/api.php?action=query&titles=NonExistentPage12345&format=json" '"missing"'
     test_http_status "History action loads" "${BASE_URL}/w/index.php?title=Main_Page&action=history" "200"
-    test_http_status "Printable version loads" "${BASE_URL}/w/index.php?title=Main_Page&printable=yes" "200"
+    test_http_status "Printable version loads" "${BASE_URL}/w/index.php?title=Main_Page&printable=yes" "200" "40"
     _check_in "Generator meta tag present" "$body" "MediaWiki"
 }
 

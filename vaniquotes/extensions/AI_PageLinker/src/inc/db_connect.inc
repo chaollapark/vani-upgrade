@@ -1,6 +1,6 @@
 <?php
 $config = require '/var/www/vaniquotes/vaniquotes.env.php';
-$host = "localhost";
+$host = "mariadb-prod";
 $user = $config['DB_USER'];
 $password = $config['DB_PASS'];
 $database = "vp_search";

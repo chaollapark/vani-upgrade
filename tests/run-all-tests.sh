@@ -9,6 +9,14 @@
 set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+if [[ -f "${REPO_ROOT}/.env" ]]; then
+    set -a
+    # shellcheck disable=SC1090
+    source "${REPO_ROOT}/.env"
+    set +a
+fi
+
 ALL_WIKIS=(vanisource vaniquotes vanipedia vanitest vanimedia vanibooks vanictionary vaniversity)
 
 if (( $# > 0 )); then WIKIS=("$@"); else WIKIS=("${ALL_WIKIS[@]}"); fi

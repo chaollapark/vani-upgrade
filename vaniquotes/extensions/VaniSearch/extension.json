@@ -1,5 +1,5 @@
 {
-  "name": "Vanisource Search",
+  "name": "Vanipedia Search",
   "version": "0.0.1",
   "author": [
     "Yadasampati dasa"
@@ -11,9 +11,7 @@
     "VaniSearchHooks": "src/VaniSearchHooks.php"
   },
   "Hooks": {
-    "PageSaveComplete": "VaniSearchHooks::onPageSaveComplete",
-    "ArticleDeleteComplete": "VaniSearchHooks::onArticleDeleteComplete",
-    "ArticleUndelete": "VaniSearchHooks::onArticleUndelete"
+    "PageSaveComplete": "VaniSearchHooks::onPageSaveComplete"
   },
   "MessagesDirs": {
     "VaniSearch": [

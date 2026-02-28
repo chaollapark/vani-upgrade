@@ -15,6 +15,8 @@ services:
       - ./vanisource/global:/var/www/html/w/global:ro
       # Custom skin
       - ./vanisource/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
+      # Environment config for custom extensions
+      - ./vanisource/env/vanisource.env.php:/var/www/vanisource/vanisource.env.php:ro
       # Custom extensions (modern ones with extension.json)
       - ./vanisource/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
       - ./vanisource/extensions/VaniUrlRouter:/var/www/html/w/extensions/VaniUrlRouter:ro
@@ -177,6 +179,8 @@ services:
       - ./vanimedia/global:/var/www/html/w/global:ro
       - ./vanimedia/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
       - ./vanimedia/menu.dat:/var/www/html/w/menu.dat:ro
+      # Environment config for custom extensions
+      - ./vanimedia/env/vanimedia.env.php:/var/www/vanimedia/vanimedia.env.php:ro
       - ./vanimedia/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
       - ./vanimedia/extensions/MobileDetect:/var/www/html/w/extensions/MobileDetect:ro
       - ./vanimedia/extensions/VaniSearch:/var/www/html/w/extensions/VaniSearch:ro
@@ -223,6 +227,8 @@ services:
       - ./vaniquotes/global:/var/www/html/w/global:ro
       - ./vaniquotes/skins/VaniSkin:/var/www/html/w/skins/VaniSkin:ro
       - ./vaniquotes/menu.dat:/var/www/html/w/menu.dat:ro
+      # Environment config for custom extensions
+      - ./vaniquotes/env/vaniquotes.env.php:/var/www/vaniquotes/vaniquotes.env.php:ro
       # Reused extensions
       - ./vaniquotes/extensions/VaniAudio:/var/www/html/w/extensions/VaniAudio:ro
       - ./vaniquotes/extensions/VaniVideo:/var/www/html/w/extensions/VaniVideo:ro

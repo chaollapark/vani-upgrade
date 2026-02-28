@@ -1,19 +1,31 @@
 {
-  "name": "Vanisource Search",
+  "name": "Vanipedia Search",
   "version": "0.0.1",
   "author": [
     "Yadasampati dasa"
   ],
-  "url": "https://www.vanipedia.org/wiki/Special:VaniSearch",
+  "url": "/wiki/Special:VaniSearch",
   "descriptionmsg": "myextension-desc",
   "type": "specialpage",
   "AutoloadClasses": {
+    "SpecialVaniSearch": "src/SpecialVaniSearch.php",
     "VaniSearchHooks": "src/VaniSearchHooks.php"
   },
   "Hooks": {
-    "PageSaveComplete": "VaniSearchHooks::onPageSaveComplete",
-    "ArticleDeleteComplete": "VaniSearchHooks::onArticleDeleteComplete",
-    "ArticleUndelete": "VaniSearchHooks::onArticleUndelete"
+    "PageSaveComplete": "VaniSearchHooks::onPageSaveComplete"
+  },
+  "ResourceModules": {
+    "ext.vaniSearch.specialPage": {
+      "scripts": ["js/jquery-3.2.1.min.js"],
+      "styles": ["css/style-search.css"]
+    }
+  },
+  "ResourceFileModulePaths": { 
+    "localBasePath": "",
+    "remoteExtPath": "VaniSearch"
+  },
+  "SpecialPages": {
+    "VaniSearch": "SpecialVaniSearch"
   },
   "MessagesDirs": {
     "VaniSearch": [

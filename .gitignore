@@ -9,3 +9,18 @@ tests/results.log
 # OS / editor
 .DS_Store
 *.swp
+
+# Node
+node_modules/
+
+# Test artifacts
+tests/ui/artifacts/
+tests/ui/test-results/
+
+# Backups
+*.bak
+*.broken/
+
+# Backup files
+*.inc.1
+*.inc.bu

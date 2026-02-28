@@ -77,7 +77,7 @@ private static function DbConnect () {
   if (self::$mysqli) return;
   if (!self::$config) self::$config = require '/var/www/vanisource/vanisource.env.php';
             
-  self::$mysqli = new mysqli("localhost",self::$config['DB_USER'],self::$config['DB_PASS'],"vp_search");
+  self::$mysqli = new mysqli("mariadb-prod",self::$config['DB_USER'],self::$config['DB_PASS'],"vp_search");
   if (self::$mysqli->connect_error) {
     die('Connect Error ('.self::$mysqli->connect_errno.') '.self::$mysqli->connect_error);
   }
